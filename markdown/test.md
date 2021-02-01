@@ -1,0 +1,1 @@
+[link](https://cdn.jsdelivr.net/gh/cairufan/image@main/other/)
