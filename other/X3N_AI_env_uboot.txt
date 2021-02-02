@@ -1,0 +1,25 @@
+arch=arm
+baudrate=115200
+board=nvt-na51068
+board_name=nvt-na51068
+bootargs=earlyprintk console=ttyS0,115200 rootwait nprofile_irq_duration=on coherent_pool=2M libata.force=1.5 ahci_nvt_ivot.force_gen=1 rootfstype=squashfs ro flashsize=8192M chiptype=81 EtherConfig=1 AuthSerial=0071000000 MachineType=0 HardwareVer=0 DevVersion=0 UartConfig=3 blkdevparts=mmcblk0:0x40000@0x40000(fdt),0x100000@0xC0000(uboot+3Logo),4M@0x1C0000(Kernel),16M@21M(Rootfs),128M@41M(AppLocal),800M@169M(AppExt),16M@971M(SysParaCusPara),1M@987M(SysStatus),2048M@988M(data1),-(data2) nvtemmcpart=0x40000@0x40000(fdt),0x100000@0xc0000(uboot+3Logo),0x400000@0x1c0000(linux),0x1000000@0x1500000(rootfs),0x400000@0x2500000(BKSystem),0x8000000@0x2900000(AppLocal),0x32000000@0xaa00000(AppExt),0x1000000@0x3cb00000(SysParaCusPara),0x100000@0x3dc00000(SysStatus),0x80000000@0x3de00000(data1),0x10dd00000@0xbdf00000(data2)  root=/dev/mmcblk0p4 
+bootcmd=nvt_boot
+bootdelay=1
+cpu=armv7
+eth1addr=0a:0b:0c:0d:0e:02
+ethact=eth0
+ethaddr=0a:0b:0c:0d:0e:01
+gatewayip=192.168.55.251
+hostname=soclnx
+ipaddr=192.168.55.234
+mtdparts=0x40000@0x40000(fdt),0x100000@0xc0000(uboot),0x400000@0x1c0000(linux),0x1000000@0x1500000(rootfs),0x400000@0x2500000(BKSystem),0x8000000@0x2900000(AppLocal),0x32000000@0xaa00000(AppExt),0x1000000@0x3cb00000(SysParaCusPara),0x100000@0x3dc00000(SysStatus),0x80000000@0x3de00000(data1),0x10dd00000@0xbdf00000(data2)
+netmask=255.255.248.0
+serverip=192.168.55.12
+soc=nvt-na51068
+stderr=serial
+stdin=serial
+stdout=serial
+vendor=novatek
+ver=U-Boot 2016.07 (Jan 14 2021 - 15:20:01 +0800)
+
+Environment size: 1614/8188 bytes

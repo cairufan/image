@@ -1,0 +1,744 @@
+﻿[10:55:51:826][start_log:20210202_10:55:51:826]
+[10:55:52:249]restarting.....
+[10:55:52:553]NPpT0
+[10:55:52:553]UNZOK!NA51068 04.02.01
+[10:55:52:553]CPU1200 DONE
+[10:55:52:553]mmc bootstrap
+[10:55:52:553]0oad all-in-one fw
+[10:55:52:553]Loader Start ...
+[10:55:52:574]323B_DRAM1_1066_8192Gb_DRAM2_8192Gb 12/29/2020 14:54:58
+[10:55:52:574]
+[10:55:52:575]card open fail
+[10:55:52:575]EMMC OK
+[10:55:52:575]0000000CEMMC
+[10:55:52:575]tmp_addr 0x02000000
+[10:55:52:575]LdCtrl2 0x00000000
+[10:55:52:581]uboot_addr 0x1E000000
+[10:55:52:581]uboot_size 0x01F80000
+[10:55:52:877]core No. 0x00000511
+[10:55:52:877]fdt 0x00080000
+[10:55:52:877]shm 0x00A00000
+[10:55:52:877]p_bininfo->boot.fdt_addr 0x00080000
+[10:55:52:877]bl_smp_start
+[10:55:52:878]uboot_entry 0x1E000000
+[10:55:52:888]core2_jump_program 0xFE080500
+[10:55:52:888]code2JumpCodelen 0x00000010
+[10:55:52:888]core2_entry2_addr 0x1FF80000
+[10:55:52:888]core2_entry_program 0xFE080510
+[10:55:52:901]code2EntryCodelen 0x000001A4
+[10:55:52:901]0xFE0B9000= 0x00000000
+[10:55:52:901]reset core2
+[10:55:52:915]2acor1await
+[10:55:52:915]
+[10:55:52:916]U-Boot 2016.07 (Jan 16 2021 - 17:22:03 +0800)
+[10:55:52:916]
+[10:55:52:916]*****************************************************
+[10:55:52:927]U_BOOT:X5N_AI Sat, 16 Jan 2021 17:22:03 +0800 rfcai @SDK_V1.02.010
+[10:55:52:927]*****************************************************
+[10:55:52:934]CPU:   Novatek NT @ 1200 MHz
+[10:55:52:934]DRAM:  2 GiB
+[10:55:52:962]Relocation to 0x1feb2000, Offset is 0x01eb2000 sp at 1fbafed0
+[10:55:52:962]ARM CA9 global timer had already been initiated
+[10:55:52:972] CONFIG_MEM_SIZE              =      0x80000000 
+[10:55:52:972] CONFIG_NVT_UIMAGE_SIZE       =      0x00a00000 
+[10:55:52:983] CONFIG_UBOOT_SDRAM_BASE      =      0x1e000000 
+[10:55:52:983] CONFIG_UBOOT_SDRAM_SIZE      =      0x01f80000 
+[10:55:52:994] CONFIG_LINUX_SDRAM_BASE      =      0x00b00000 
+[10:55:52:994] CONFIG_LINUX_SDRAM_SIZE      =      0x1d500000 
+[10:55:52:995] CONFIG_LINUX_SDRAM_START     =      0x1d600000  
+[10:55:53:011]MMC:   NA51068_SDC: 0
+[10:55:53:011]Using default environment
+[10:55:53:011]
+[10:55:53:011]Firmware name: FW98323A.bin FW98323T.bin FW98323A.fdt.bin  
+[10:55:53:065]switch to partitions #0, OK
+[10:55:53:065]mmc0(part 0) is current device
+[10:55:53:065]mmc - MMC sub system
+[10:55:53:065]
+[10:55:53:066]Usage:
+[10:55:53:076]mmc info - display info of the current MMC device
+[10:55:53:076]mmc read addr blk# cnt
+[10:55:53:076]mmc write addr blk# cnt
+[10:55:53:077]mmc erase blk# cnt
+[10:55:53:077]mmc rescan
+[10:55:53:088]mmc part - lists available partition on current mmc device
+[10:55:53:088]mmc dev [dev] [part] - show or set current mmc device [partition]
+[10:55:53:099]mmc list - lists available devices
+[10:55:53:099]mmc eraseall
+[10:55:53:099]mmc en_egroup
+[10:55:53:103]mmc dis_egroup
+[10:55:53:106]mmc hwpartition [args...] - does hardware partitioning
+[10:55:53:114]  arguments (sizes in 512-byte blocks):
+[10:55:53:115]    [user [enh start cnt] [wrrel {on|off}]] - sets user data area attributes
+[10:55:53:125]    [gp1|gp2|gp3|gp4 cnt [enh] [wrrel {on|off}]] - general purpose partition
+[10:55:53:126]    [check|set|complete] - mode, complete set partitioning completed
+[10:55:53:133]  WARNING: Partitioning is a write-once setting once it is set to complete.
+[10:55:53:147]  Power cycling is required to initialize partitions after set to complete.
+[10:55:53:147]mmc setdsr <value> - set DSR register value
+[10:55:53:147]
+[10:55:53:149]nvt_detect_fw_tbin Boot from flash or emmc
+[10:55:53:158]** No partition table - mmc 0 **
+[10:55:53:159]** Unrecognized filesystem type **
+[10:55:53:159]MMC interface configure failed
+[10:55:53:159]Open SD fail: No SD device? 
+[10:55:53:160]
+[10:55:53:173]MMC read: dev # 0, block # 512, count 1 ... 1 blocks read: OK
+[10:55:53:173]
+[10:55:53:174]MMC read: dev # 0, block # 512, count 33 ... 33 blocks read: OK
+[10:55:53:183] Skip this partition node: partition_fdt.restore 
+[10:55:53:192]mtdparts=0x40000@0x40000(fdt),0x100000@0xc0000(uboot),0x400000@0x1c0000(linux),0x1000000@0x1500000(rootfs),0x400000@0x2500000(BKSystem),0x8000000@0x2900000(AppLocal),0x32000000@0xaa00000(AppExt),0x1000000@0x3cb00000(SysParaCusPara),0x100000@0x3dc00000(SysStatus),0x80000000@0x3de00000(data1),0x10dd00000@0xbdf00000(data2)
+[10:55:53:217]DTS find cpu freq clock 1400MHz
+[10:55:53:218]Read power trim = 0x0000000d
+[10:55:53:218]cpu 1400 remap_data 14
+[10:55:53:218]Set CPU clk 1400MHz
+[10:55:53:229]Read power trim = 0x0000000d
+[10:55:53:229]ddr 2128 remap_data 30
+[10:55:53:229]Net:   na51068_eth_initialize 1.0.2.0
+[10:55:53:230]na51068_eth_initialize: dtb node /eth0@fcc00000 found
+[10:55:53:241]eqos_initialize 0xfcc00000
+[10:55:53:241]eth_parse_phy_intf: get IO MEM 0xfcc00000
+[10:55:53:241]DTS /eth0@fcc00000 found
+[10:55:53:241]LED1 pinmux 0x100046
+[10:55:53:252]eth_parse_phy_intf: ref-clk-out 0
+[10:55:53:252]eth_parse_phy_intf: pinmux detect RGMII 0x1101
+[10:55:53:768]na51068_eth_initialize: dtb node /eth1@fcd00000 found
+[10:55:53:768]eqos_initialize 0xfcd00000
+[10:55:53:768]eth_parse_phy_intf: get IO MEM 0xfcd00000
+[10:55:53:779]DTS /eth1@fcd00000 found
+[10:55:53:779]LED1 pinmux 0x100046
+[10:55:53:780]eth_parse_phy_intf: ref-clk-out 0
+[10:55:53:785]eth_parse_phy_intf: pinmux detect emb phy 0x1101
+[10:55:53:797]eth0, eth1
+[10:55:53:905]Hit CTRL + C to stop autoboot:  0 
+[10:55:53:906]NVT firmware boot.....
+[10:55:53:906]nvt_detect_fw_tbin Boot from flash or emmc
+[10:55:53:906]
+[10:55:53:916]MMC read: dev # 0, block # 3584, count 2 ... 2 blocks read: OK
+[10:55:53:917]
+[10:55:54:049]MMC read: dev # 0, block # 3584, count 5748 ... 5748 blocks read: OK
+[10:55:54:050] uImage is at 1d600000, uboot fdt image is at 1fbb0090, loader tmp fdt address is at 80000 
+[10:55:54:061][board/novatek/nvt-na51068/na51068evb.c, streamax_init, 655]:
+[10:55:54:061]main_board_ver = 0, hardware_ver = 0
+[10:55:54:062]
+[10:55:54:068][board/novatek/common/nvt_ivot_soc_utils.c, do_nvt_boot_cmd, 1323]:bootargs: earlyprintk console=ttyS0,115200 rootwait nprofile_irq_duration=on coherent_pool=2M libata.force=1.5 ahci_nvt_ivot.force_gen=1 rootfstype=squashfs ro flashsize=8192M chiptype=80 EtherConfig=0 AuthSerial=00BB000000 MachineType=0 HardwareVer=0 DevVersion=0 UartConfig=5 blkdevparts=mmcblk0:0x40000@0x40000(fdt),0x100000@0xC0000(uboot+3Logo),4M@0x1C0000(Kernel),16M@21M(Rootfs),128M@41M(AppLocal),800M@169M(AppExt),16M@971M(SysParaCusPara),1M@987M(SysStatus),2048M@988M(data1),-(data2) nvtemmcpart=0x40000@0x40000(fdt),0x100000@0xc0000(uboot+3Logo),0x400000@0x1c0000(linux),0x1000000@0x1500000(rootfs),0x400000@0x2500000(BKSystem),0x8000000@0x2900000(AppLocal),0x32000000@0xaa00000(AppExt),0x1000000@0x3cb00000(SysParaCusPara),0x100000@0x3dc00000(SysStatus),0x80000000@0x3de00000(data1),0x10dd00000@0xbdf00000(data2)  root=/dev/mmcblk0p4  
+[10:55:54:145]
+[10:55:54:156][drivers/encrypt/encrypt_operate.c, At88sc0104InitPin, 30]:scl(0, 22); sda(0, 23)
+[10:55:54:157]
+[10:55:54:182]atsha204:01 23 A8 F6 B4 7F CE 6C EE
+[10:55:54:357][drivers/encrypt/encrypt.c, encrypt_init_atsha, 232]:auth_serial: 00BB112233 sub machine 0 group 0
+[10:55:54:358]
+[10:55:54:369][upgrade/upgrade.c, UpgradeContainer, 2041]:get upgrade mask 0x5346424D <- 0x0(0xE59F1004)
+[10:55:54:369]
+[10:55:54:372][upgrade/upgrade.c, MachineTypeCheck, 1762]:DeviceType 186
+[10:55:54:380]
+[10:55:54:381]
+[10:55:54:430]MMC read: dev # 0, block # 2021376, count 2048 ... 2048 blocks read: OK
+[10:55:54:430][upgrade/SysStateOperate.c, check_sys_state_valid, 39]:crc_state 1016 crc_real 1016 crc 0x9C0F90B7
+[10:55:54:431]
+[10:55:54:442][upgrade/upgrade.c, UpgradeSoftware, 1896]:Check Upgrade At Momory Address 0x00000000
+[10:55:54:442]
+[10:55:54:453][upgrade/upgrade.c, VerifyMmpValid, 583]:Bad memory Addr 0x00000000
+[10:55:54:453]
+[10:55:54:453][upgrade/SysStateOperate.c, cal_sysstat_crc, 242]:state len 852 crc 0x7657F0C4 with exception 1
+[10:55:54:454]
+[10:55:54:463]
+[10:55:54:464]MMC write: dev # 0, block # 2021376, count 2 ... 2 blocks written: OK
+[10:55:54:474][upgrade/SysStateOperate.c, iter_to_set_system_state, 358]:set 0/4 with 0
+[10:55:54:474]
+[10:55:54:474]
+[10:55:54:475]MMC write: dev # 0, block # 2021888, count 2 ... 2 blocks written: OK
+[10:55:54:486][upgrade/SysStateOperate.c, iter_to_set_system_state, 358]:set 1/4 with 0
+[10:55:54:486]
+[10:55:54:486]
+[10:55:54:487]MMC write: dev # 0, block # 2022400, count 2 ... 2 blocks written: OK
+[10:55:54:497][upgrade/SysStateOperate.c, iter_to_set_system_state, 358]:set 2/4 with 0
+[10:55:54:497]
+[10:55:54:499]
+[10:55:54:509]MMC write: dev # 0, block # 2022912, count 2 ... 2 blocks written: OK
+[10:55:54:509][upgrade/SysStateOperate.c, iter_to_set_system_state, 358]:set 3/4 with 0
+[10:55:54:509]
+[10:55:54:511]
+[10:55:54:525]MMC read: dev # 0, block # 3384, count 200 ... 200 blocks read: OK
+[10:55:54:525]jpeg addr=0x10b80000, type=1
+[10:55:54:528]start JPEG decode
+[10:55:54:646]show logo image size: 1024 x 768
+[10:55:54:647]LCD300:0 chooses PLL9:297000000 with div=2 (drv:1.1.2)
+[10:55:54:652]hdmi_if_init, apply new vid:16 setting. 
+[10:55:54:664]hdmitx_init_phy, clock_rate:148500KHz
+[10:55:54:686]Init PHY END
+[10:55:54:687]Skip InitDDC
+[10:55:54:687]hdmi: audio stream enable. 
+[10:55:54:687]show logo end
+[10:55:54:689]
+[10:55:54:699]MMC read: dev # 0, block # 3072, count 256 ... 256 blocks read: OK
+[10:55:54:699]jpeg addr=0x10b80000, type=0
+[10:55:54:700]start JPEG decode
+[10:55:54:781]show logo image size: 720 x 576
+[10:55:54:781]Bootlogo CVBS ON. 
+[10:55:54:782]LCD210_1: chooses PLL9:297000 with div=11
+[10:55:54:853]show logo end
+[10:55:54:853]## Booting kernel from Legacy Image at 1d600000 ...
+[10:55:54:855]   Image Name:   Linux-4.9.118
+[10:55:54:865]   Image Type:   ARM Linux Kernel Image (uncompressed)
+[10:55:54:865]   Data Size:    2942872 Bytes = 2.8 MiB
+[10:55:54:865]   Load Address: 00008000
+[10:55:54:866]   Entry Point:  00008000
+[10:55:55:368]   Verifying Checksum ... OK
+[10:55:55:368]## Flattened Device Tree blob at 1fbb0090
+[10:55:55:369]   Booting using the fdt blob at 0x1fbb0090
+[10:55:56:057]   Loading Kernel Image ... OK
+[10:55:56:060]   Loading Device Tree to 1fba5000, end 1fbac061 ... OK
+[10:55:56:070]
+[10:55:56:070]Starting kernel ...
+[10:55:56:070]
+[10:55:56:070]ACTLR: 0x00000005
+[10:55:56:070]ACTLR: 0x00000045
+[10:55:56:070]Disable MMU
+[10:55:56:070]Clear MMU
+[10:55:56:072]Uboot L2 cache aux val: 0x72430000
+[10:55:56:090]Uboot L2 cache prefetch ctrl val: 0x70000000
+[10:55:56:090]Uboot L2 cache ctrl val: 0x00000000
+[10:55:56:091]Done
+[10:55:57:014]Uncompressing Linux... done, booting the kernel.
+[10:55:57:231]abceBooting Linux on physical CPU 0x0
+[10:55:57:242]Linux version 4.9.118 (hjli@streamax-virtual-machine) (gcc version 6.5.0 (Buildroot 2019.05.2) ) #1 SMP Tue Jan 12 20:43:32 CST 2021
+[10:55:57:251]CPU: ARMv7 Processor [414fc091] revision 1 (ARMv7), cr=10c5387d
+[10:55:57:260]CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[10:55:57:261]OF: fdt:Machine model: Novatek NA51068
+[10:55:57:266]OF: fdt:Reserved memory: failed to reserve memory for node 'dsp_cma@0x02000000': base 0x02000000, size 0 MiB
+[10:55:57:279]Reserved memory: created CMA memory pool at 0x03000000, size 8 MiB
+[10:55:57:280]OF: reserved mem: initialized node cma0@0x03000000, compatible id shared-dma-pool
+[10:55:57:291]Memory policy: Data cache writealloc
+[10:55:57:293]percpu: Embedded 14 pages/cpu @da2fa000 s25484 r8192 d23668 u57344
+[10:55:57:298]Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 369460
+[10:55:57:308]Kernel command line: earlyprintk console=ttyS0,115200 rootwait nprofile_irq_duration=on coherent_pool=2M libata.force=1.5 ahci_nvt_ivot.force_gen=1 rootfstype=squashfs ro flashsize=8192M chiptype=80 EtherConfig=0 AuthSerial=00BB112233 MachineType=0 HardwareVer=0 DevVersion=0 UartConfig=5 blkdevparts=mmcblk0:0x40000@0x40000(fdt),0x100000@0xC0000(uboot+3Logo),4M@0x1C0000(Kernel),16M@21M(Rootfs),128M@41M(AppLocal),800M@169M(AppExt),16M@971M(SysParaCusPara),1M@987M(SysStatus),2048M@988M(data1),-(data2) nvtemmcpart=0x40000@0x40000(fdt),0x100000@0xc0000(uboot+3Logo),0x400000@0x1c0000(linux),0x1000000@0x1500000(rootfs),0x400000@0x2500000(BKSystem),0x8000000@0x2900000(AppLocal),0x32000000@0xaa00000(AppExt),0x1000000@0x3cb00000(SysParaCusPara),0x100000@0x3dc00000(SysStatus),0x80000000@0x3de00000(data1),0x10dd00000@0xbdf00000(data2)  root=/dev/mmcblk0p4  
+[10:55:57:377]etherconfig_setup:0(0)[0:default; 1:fixed RMII link 100M-full; 2:fixed RGMII link 1G Full Duplex]
+[10:55:57:386]UartConfig_setup: 5(5); [0: nothing to do default; 1: GPIO2_25 for UART2; 2: GPIO0_15 for UART2  3: GPIO1_3 for UART2 4: GPIO1_10 for UART2: 5: GPIO3_6 for UART2]
+[10:55:57:401]PID hash table entries: 4096 (order: 2, 16384 bytes)
+[10:55:57:403]Dentry cache hash table entries: 262144 (order: 8, 1048576 bytes)
+[10:55:57:409]Inode-cache hash table entries: 131072 (order: 7, 524288 bytes)
+[10:55:57:419]Memory: 1458000K/1490944K available (6144K kernel code, 300K rwdata, 1932K rodata, 1024K init, 305K bss, 24752K reserved, 8192K cma-reserved, 0K highmem)
+[10:55:57:429]Virtual kernel memory layout:
+[10:55:57:437]    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+[10:55:57:438]    fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[10:55:57:446]    vmalloc : 0xdb800000 - 0xff800000   ( 576 MB)
+[10:55:57:446]    lowmem  : 0x80000000 - 0xdb000000   (1456 MB)
+[10:55:57:446]    pkmap   : 0x7fe00000 - 0x80000000   (   2 MB)
+[10:55:57:456]    modules : 0x7e800000 - 0x7fe00000   (  22 MB)
+[10:55:57:457]      .text : 0x80008000 - 0x80700000   (7136 kB)
+[10:55:57:466]      .init : 0x80900000 - 0x80a00000   (1024 kB)
+[10:55:57:466]      .data : 0x80a00000 - 0x80a4b1f0   ( 301 kB)
+[10:55:57:467]       .bss : 0x80a4d000 - 0x80a99654   ( 306 kB)
+[10:55:57:478]SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[10:55:57:478]Hierarchical RCU implementation.
+[10:55:57:479]NR_IRQS:384
+[10:55:57:491]L2C-310 enabling early BRESP for Cortex-A9
+[10:55:57:491]L2C-310 full line of zeros enabled for Cortex-A9
+[10:55:57:492]L2C-310 ID prefetch enabled, offset 1 lines
+[10:55:57:500]L2C-310 dynamic clock gating enabled, standby mode enabled
+[10:55:57:500]L2C-310 cache controller enabled, 16 ways, 256 kB
+[10:55:57:511]L2C-310: CACHE_ID 0x410000c9, AUX_CTRL 0x76430001
+[10:55:57:511]APIs of flush/clean all cache are supported
+[10:55:57:512]novatek_clock_init
+[10:55:57:519]sched_clock: 64 bits at 174MHz, resolution 5ns, wraps every 4398046511103ns
+[10:55:57:533]clocksource: arm_global_timer: mask: 0xffffffffffffffff max_cycles: 0x285c3fa3fc, max_idle_ns: 440795205848 ns
+[10:55:57:533]Switching to timer-based delay loop, resolution 5ns
+[10:55:57:534]FTTMR010 Driver Version: 1.0.1
+[10:55:57:546]clocksource: fttmr010_clksrc: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 159271703898 ns
+[10:55:57:547]fttmr010_clock_event_shutdown, shutdown tmr0 
+[10:55:57:557]Console: colour dummy device 80x30
+[10:55:57:558]Calibrating delay loop (skipped), value calculated using timer frequency.. 349.99 BogoMIPS (lpj=1749999)
+[10:55:57:567]pid_max: default: 32768 minimum: 301
+[10:55:57:567]Mount-cache hash table entries: 4096 (order: 2, 16384 bytes)
+[10:55:57:578]Mountpoint-cache hash table entries: 4096 (order: 2, 16384 bytes)
+[10:55:57:578]CPU: Testing write buffer coherency: ok
+[10:55:57:590]Setting up static identity map for 0x100000 - 0x100058
+[10:55:57:590]Brought up 2 CPUs
+[10:55:57:590]SMP: Total of 2 processors activated (699.99 BogoMIPS).
+[10:55:57:591]CPU: All CPU(s) started in SVC mode.
+[10:55:57:600]devtmpfs: initialized
+[10:55:57:600]VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 4
+[10:55:57:601]NVTBOOTTS: nvt_bootts_init initial success
+[10:55:57:611]NVTBOOTTS: nvt_bootts_proc_init initial success
+[10:55:57:613]nvt_jiffies: system HZ: 100, pClk: 12000000 
+[10:55:57:625]clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[10:55:57:626]futex hash table entries: 512 (order: 3, 32768 bytes)
+[10:55:57:634]pinctrl core: initialized pinctrl subsystem
+[10:55:57:634]NET: Registered protocol family 16
+[10:55:57:645]DMA: preallocated 2048 KiB pool for atomic coherent allocations
+[10:55:57:645]cpuidle: using governor menu
+[10:55:57:645]nvt_cma nvt_cma: assigned reserved memory node cma0@0x03000000
+[10:55:57:657]nvt_cma nvt_cma: fmem: cma area id: 0, cma base:0x3000000, size:0x800000 added
+[10:55:57:658]nvt_cma nvt_cma: fmem/Version: 0.0.1
+[10:55:57:667]nvt_cma nvt_cma: Probe successfully
+[10:55:57:667]nvt_cma nvt_dsp_cma: memory reserved init failed with -22
+[10:55:57:668]nvt_cma: probe of nvt_dsp_cma failed with error -22
+[10:55:57:678]hw-breakpoint: found 5 (+1 reserved) breakpoint and 1 watchpoint registers.
+[10:55:57:679]hw-breakpoint: maximum watchpoint size is 4 bytes.
+[10:55:57:690]nvt_otp_module_init
+[10:55:57:691]!!!! nvt_composite_mux_clk_recalc_rate: ext1_clk current_freq(270000000) exceed max_freq(74250000) !!!!
+[10:55:57:698]!!!! nvt_composite_mux_clk_recalc_rate: ext0_clk current_freq(270000000) exceed max_freq(74250000) !!!!
+[10:55:57:709]!!!! nvt_composite_mux_clk_set_rate: ext1_clk current_freq(270000000) exceed max_freq(74250000), return !!!!
+[10:55:57:720]!!!! nvt_composite_mux_clk_recalc_rate: ext1_clk current_freq(270000000) exceed max_freq(74250000) !!!!
+[10:55:57:731]!!!! nvt_composite_mux_clk_set_rate: ext0_clk current_freq(270000000) exceed max_freq(74250000), return !!!!
+[10:55:57:745]!!!! nvt_composite_mux_clk_recalc_rate: ext0_clk current_freq(270000000) exceed max_freq(74250000) !!!!
+[10:55:57:746]------------------------------
+[10:55:57:746]AXI0=500 AXI1=400 AXI2=350 HCLK=300
+[10:55:57:746]CPU=1400 DRAM=2128 DSP=600 CODEC=380
+[10:55:57:757]DISP0=297 DISP1=270 DISP2=54 CNN=600
+[10:55:57:757]MPLL8(VCAP)=465 SSP=344
+[10:55:57:757]------------------------------
+[10:55:57:758]SCSI subsystem initialized
+[10:55:57:767]usbcore: registered new interface driver usbfs
+[10:55:57:767]usbcore: registered new interface driver hub
+[10:55:57:768]usbcore: registered new device driver usb
+[10:55:57:779]Linux video capture interface: v2.00
+[10:55:57:780]pps_core: LinuxPPS API ver. 1 registered
+[10:55:57:791]pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[10:55:57:791]clocksource: Switched to clocksource arm_global_timer
+[10:55:57:793]VFS: Disk quotas dquot_6.6.0
+[10:55:57:802]VFS: Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+[10:55:57:802]NET: Registered protocol family 2
+[10:55:57:812]TCP established hash table entries: 16384 (order: 4, 65536 bytes)
+[10:55:57:813]TCP bind hash table entries: 16384 (order: 5, 131072 bytes)
+[10:55:57:824]TCP: Hash tables configured (established 16384 bind 16384)
+[10:55:57:825]UDP hash table entries: 1024 (order: 3, 32768 bytes)
+[10:55:57:833]UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes)
+[10:55:57:833]NET: Registered protocol family 1
+[10:55:57:834]RPC: Registered named UNIX socket transport module.
+[10:55:57:844]RPC: Registered udp transport module.
+[10:55:57:844]RPC: Registered tcp transport module.
+[10:55:57:845]RPC: Registered tcp NFSv4.1 backchannel transport module.
+[10:55:57:857]NetWinder Floating Point Emulator V0.97 (double precision)
+[10:55:57:859]hw perfevents: enabled with armv7_cortex_a9 PMU driver, 7 counters available
+[10:55:57:866]workingset: timestamp_bits=14 max_order=19 bucket_order=5
+[10:55:57:867]squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[10:55:57:877]NFS: Registering the id_resolver key type
+[10:55:57:877]Key type id_resolver registered
+[10:55:57:878]Key type id_legacy registered
+[10:55:57:878]fuse init (API version 7.26)
+[10:55:57:891]bounce: pool size: 64 pages
+[10:55:57:891]io scheduler noop registered
+[10:55:57:891]io scheduler deadline registered
+[10:55:57:892]io scheduler cfq registered (default)
+[10:55:57:900]probe fe400000.gpio OK, at 0xfe700000, version:1.0.4. 
+[10:55:57:902]probe fe420000.gpio OK, at 0xfe720000, version:1.0.4. 
+[10:55:57:911]probe fe440000.gpio OK, at 0xfe740000, version:1.0.4. 
+[10:55:57:912]probe fe640000.gpio OK, at 0xfe940000, version:1.0.4. 
+[10:55:57:924]ftdmac030 fca00000.dma030: driver probed, irq 19, mapped at fca00000
+[10:55:57:925]streamax request GPIO3_6(3*32+6) for uart2_direction
+[10:55:57:934]Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[10:55:57:934]console [ttyS0] disabled
+[10:55:57:935]fe200000.uart: ttyS0 at MMIO 0xfe200000 (irq = 7, base_baud = 3000000) is a 16550A
+[10:55:57:946]console [ttyS0] enabled
+[10:55:57:948]fe220000.uart: ttyS1 at MMIO 0xfe220000 (irq = 8, base_baud = 3000000) is a 16550A
+[10:55:57:955]fe240000.uart: ttyS2 at MMIO 0xfe240000 (irq = 9, base_baud = 3000000) is a 16550A
+[10:55:57:967]fe260000.uart: ttyS3 at MMIO 0xfe260000 (irq = 10, base_baud = 3000000) is a 16550A
+[10:55:57:968][drm] Initialized
+[10:55:57:987]brd: module loaded
+[10:55:57:987]loop: module loaded
+[10:55:57:988]NVT_SATA100_AHCI driver version 1.01.07 (0xF9E00000)(0xFDC00000)
+[10:55:58:102]nvt_sata100 f9e00000.sata: AHCI NVT GPIO LED control is enabled. (-1)(-1)(-1)(-1)(-1)
+[10:55:58:115]nvt_sata100 f9e00000.sata: forcing PORTS_IMPL to 0x1
+[10:55:58:116]nvt_sata100 f9e00000.sata: SSS flag set, parallel bus scan disabled
+[10:55:58:123]nvt_sata100 f9e00000.sata: AHCI 0001.0100 32 slots 1 ports 6 Gbps 0x1 impl platform mode
+[10:55:58:140]nvt_sata100 f9e00000.sata: flags: ncq sntf stag pm led clo only pmp pio slum part ccc 
+[10:55:58:140]scsi host0: NVT_SATA100_AHCI
+[10:55:58:141]ata1: SATA max UDMA/133 mmio [mem 0xf9e00000-0xf9e00fff] port 0x100 irq 11
+[10:55:58:146]NVT_SATA100_AHCI driver version 1.01.07 (0xF9F00000)(0xFDD00000)
+[10:55:58:261]nvt_sata100 f9f00000.sata: AHCI NVT GPIO LED control is enabled. (-1)(-1)(-1)(-1)(-1)
+[10:55:58:275]nvt_sata100 f9f00000.sata: forcing PORTS_IMPL to 0x1
+[10:55:58:277]nvt_sata100 f9f00000.sata: SSS flag set, parallel bus scan disabled
+[10:55:58:284]nvt_sata100 f9f00000.sata: AHCI 0001.0100 32 slots 1 ports 6 Gbps 0x1 impl platform mode
+[10:55:58:298]nvt_sata100 f9f00000.sata: flags: ncq sntf stag pm led clo only pmp pio slum part ccc 
+[10:55:58:298]scsi host1: NVT_SATA100_AHCI
+[10:55:58:299]ata2: SATA max UDMA/133 mmio [mem 0xf9f00000-0xf9f00fff] port 0x100 irq 12
+[10:55:58:310]nand_hw_init: round to 75000000 Hz
+[10:55:58:311]id =  0xc2 0x20 0x14 0xc2
+[10:55:58:322]spi020_nor fa900000.nor: mtd .name=spi_nor.0 .size=100000(1M) .erasesize = 0x10000(64K)
+[10:55:58:322]spi020_nor fa900000.nor: 1-bit mode @ 75000000 Hz
+[10:55:58:325]libphy: Fixed MDIO Bus: probed
+[10:55:58:332]nvt_eth_env_probe: IO MEM res start 0xfcc00000
+[10:55:58:333]nvt_eth_env_probe: get IO MEM 0xfcc00000
+[10:55:58:333]nvt_eth_env_probe: get pinmux 0x1101
+[10:55:58:350]nvt_eth_env_probe: pinmux detect RGMII 0x1101
+[10:55:58:350]nvt_eth_env_probe: find sp-clk 1
+[10:55:58:351]nvt_eth_env_probe: TBD: pinctrl still not implement split phy clk
+[10:55:58:429]DWC_ETH_QOS: Phy detected at ID/ADDR 1
+[10:55:58:429]libphy: dwc_phy: probed
+[10:55:58:429]netif_napi_add() called with weight 128 on device eth%d
+[10:55:58:441]Supports TSO, SG and TX COE
+[10:55:58:441]Supports RX COE and GRO
+[10:55:58:442]nvt_eth_env_probe: IO MEM res start 0xfcd00000
+[10:55:58:453]nvt_eth_env_probe: get IO MEM 0xdbb00000
+[10:55:58:453]nvt_eth_env_probe: get pinmux 0x1101
+[10:55:58:454]nvt_eth_env_probe: pinmux detect emb phy 0x1101
+[10:55:58:464]DWC_ETH_QOS: No phy could be detected
+[10:55:58:465]MDIO bus (id 1) registration failed
+[10:55:58:466]DWC_ETH_QOS: probe of fcd00000.eth1 failed with error -67
+[10:55:58:476]PPP generic driver version 2.4.2
+[10:55:58:476]PPP BSD Compression module registered
+[10:55:58:477]PPP Deflate Compression module registered
+[10:55:58:487]NET: Registered protocol family 24
+[10:55:58:487]usbcore: registered new interface driver asix
+[10:55:58:489]usbcore: registered new interface driver ax88179_178a
+[10:55:58:498]ata1: hard resetting link
+[10:55:58:498]usbcore: registered new interface driver cdc_ether
+[10:55:58:499]usbcore: registered new interface driver net1080
+[10:55:58:510]usbcore: registered new interface driver cdc_subset
+[10:55:58:511]usbcore: registered new interface driver zaurus
+[10:55:58:521]usbcore: registered new interface driver cdc_ncm
+[10:55:58:522]ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[10:55:58:562]ehci-nvtivot f9100000.u2host: usbhc-nvtivot
+[10:55:58:563]ehci-nvtivot f9100000.u2host: new USB bus registered, assigned bus number 1
+[10:55:58:574]ehci-nvtivot f9100000.u2host: irq 23, io mem 0xf9100000 mapped dbaf7000
+[10:55:58:605]ehci-nvtivot f9100000.u2host: USB 2.0 started, EHCI 1.00, overcurrent ignored
+[10:55:58:606]hub 1-0:1.0: USB hub found
+[10:55:58:611]hub 1-0:1.0: 1 port detected
+[10:55:58:640]ata2: hard resetting link
+[10:55:58:641]ehci-nvtivot f9200000.u2host: usbhc-nvtivot
+[10:55:58:658]ehci-nvtivot f9200000.u2host: new USB bus registered, assigned bus number 2
+[10:55:58:659]ehci-nvtivot f9200000.u2host: irq 27, io mem 0xf9200000 mapped dbb13000
+[10:55:58:685]ehci-nvtivot f9200000.u2host: USB 2.0 started, EHCI 1.00, overcurrent ignored
+[10:55:58:685]hub 2-0:1.0: USB hub found
+[10:55:58:696]hub 2-0:1.0: 1 port detected
+[10:55:58:698]usbcore: registered new interface driver cdc_acm
+[10:55:58:707]cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+[10:55:58:707]usbcore: registered new interface driver usb-storage
+[10:55:58:708]usbcore: registered new interface driver usbserial
+[10:55:58:719]usbcore: registered new interface driver option
+[10:55:58:720]usbserial: USB Serial support registered for GSM modem (1-port)
+[10:55:58:730]usbcore: registered new interface driver sierra
+[10:55:58:730]usbserial: USB Serial support registered for Sierra USB modem
+[10:55:58:741]mousedev: PS/2 mouse device common for all mice
+[10:55:58:742]nvt_rtc fe880000.rtc: rtc core: registered nvt_rtc as rtc0
+[10:55:58:743]i2c /dev entries driver
+[10:55:58:756]NVT I2C0 Driver Version: 0.0.1(hdmi:no)
+[10:55:58:756]NVT I2C1 Driver Version: 0.0.1(hdmi:no)
+[10:55:58:756]NVT I2C2 Driver Version: 0.0.1(hdmi:no)
+[10:55:58:767]Output extra 9 SCL clocks to release device hang!
+[10:55:58:767]NVT I2C3 Driver Version: 0.0.1(hdmi:no)
+[10:55:58:768]Output extra 9 SCL clocks to release device hang!
+[10:55:58:781]NVT I2C4 Driver Version: 0.0.1(hdmi:no)
+[10:55:58:781]NVT I2C5 Driver Version: 0.0.1(hdmi:no)
+[10:55:58:782]thermal thermal_zone0: thermal_ctrl 0x0000000b
+[10:55:58:792]thermal thermal_zone0: tempature 0x00000103
+[10:55:58:792]sdhci: Secure Digital Host Controller Interface driver
+[10:55:58:794]sdhci: Copyright(c) Pierre Ossman
+[10:55:58:799]sdhci-pltfm: SDHCI platform and OF driver helper
+[10:55:58:864]mmc0: SDHCI controller on fa600000.mmc [fa600000.mmc] using ADMA
+[10:55:58:865]usbcore: registered new interface driver usbhid
+[10:55:58:876]usbhid: USB HID core driver
+[10:55:58:876]nf_conntrack version 0.5.0 (16384 buckets, 65536 max)
+[10:55:58:877]gre: GRE over IPv4 demultiplexor driver
+[10:55:58:892]ip_tables: (C) 2000-2006 Netfilter Core Team
+[10:55:58:892]NET: Registered protocol family 10
+[10:55:58:893]ip6_tables: (C) 2000-2006 Netfilter Core Team
+[10:55:58:906]sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[10:55:58:907]NET: Registered protocol family 17
+[10:55:58:907]Key type dns_resolver registered
+[10:55:58:916]ThumbEE CPU extension supported.
+[10:55:58:917]Registering SWP/SWPB emulation handler
+[10:55:58:926]nvt_rtc fe880000.rtc: setting system clock to 1970-01-01 15:04:01 UTC (54241)
+[10:55:58:927]Waiting for root device /dev/mmcblk0p4...
+[10:55:58:968]mmc0: new high speed MMC card at address 0001
+[10:55:58:969]mmcblk0: mmc0:0001 8GTF4R 7.28 GiB 
+[10:55:58:981]mmcblk0boot0: mmc0:0001 8GTF4R partition 1 4.00 MiB
+[10:55:58:982]mmcblk0boot1: mmc0:0001 8GTF4R partition 2 4.00 MiB
+[10:55:58:982]mmcblk0rpmb: mmc0:0001 8GTF4R partition 3 512 KiB
+[10:55:58:995] mmcblk0: p1(fdt) p2(uboot+3Logo) p3(Kernel) p4(Rootfs) p5(AppLocal) p6(AppExt) p7(SysParaCusPara) p8(SysStatus) p9(data1) p10(data2)
+[10:55:59:053]VFS: Mounted root (squashfs filesystem) readonly on device 179:4.
+[10:55:59:053]devtmpfs: mounted
+[10:55:59:055]Freeing unused kernel memory: 1024K
+[10:55:59:061]usb 2-1: new high-speed USB device number 2 using ehci-nvtivot
+[10:55:59:270]hub 2-1:1.0: USB hub found
+[10:55:59:272]hub 2-1:1.0: 4 ports detected
+[10:55:59:502]****************************************************************
+[10:55:59:503] MDVR NT98321 X5N_AI ROOTFS 2021/01/21 19:31:29 @SDK1.02.010
+[10:55:59:512]****************************************************************
+[10:55:59:592]usb 2-1.3: new full-speed USB device number 3 using ehci-nvtivot
+[10:55:59:763]usb 2-1.3: config 1 has 2 interfaces, different from the descriptor's value: 3
+[10:55:59:772]cdc_acm 2-1.3:1.0: ttyACM0: USB ACM device
+[10:55:59:826]DWC_ETH_QOS_yinit: assume APB 120 MHz
+[10:55:59:827]DWC_ETH_QOS_yinit: apb_clk 120000000 Hz
+[10:55:59:843]Queue0 Tx fifo size 16384, Rx fifo size 16384
+[10:55:59:843]Disabled JUMBO pkt
+[10:55:59:843]Enabled TSO
+[10:55:59:843]Disabled Rx Split header mode
+[10:55:59:844]IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[10:55:59:874]nvtmem: loading out-of-tree module taints kernel.
+[10:55:59:875]NVTMEM: register misc device successfully! 
+[10:55:59:875]NVTMEM: 0.0.4
+[10:55:59:915]
+[10:55:59:915]fc400000.nvt_arb
+[10:55:59:915]0. resource:0xfc400000 size:0xa000
+[10:55:59:916]1. resource:0xfd600000 size:0xa000
+[10:55:59:917]IRQ 0. ID26
+[10:55:59:927]DevID Major:250 minor:0
+[10:55:59:927]Arbiter addr 0xfc400000 0xdbbd0000
+[10:55:59:927]SEM ID: 0x7e8273c4
+[10:55:59:928]ddr_arb_platform_create_resource: exit
+[10:55:59:933]nvt_ddr_arb_drv_init: resource done
+[10:55:59:981]log.ko v2.0: Oct 26 2020 13:47:55 (mmap 0xd8800000 size 0x78000)
+[10:55:59:982]
+[10:55:59:991]LOG base 0xd8c00000(ddr0) size 4096K (start pointer 0x7e83ea18)
+[10:55:59:992]PAGE_OFFSET(0x80000000) VMALLOC START(0xdb800000) HZ(100)
+[10:56:00:030]ms: module license 'NVT' taints kernel.
+[10:56:00:031]ms.ko v2.26 Oct 26 2020 13:48:00
+[10:56:00:067]em.ko v2.11 Oct 26 2020 13:48:01
+[10:56:00:067]em_user v2.0 Oct 26 2020 13:48:01
+[10:56:00:068]Start EM thread 0(em_callback) with nice -20
+[10:56:00:074]Start EM putjob (em_putjob) with nice -20
+[10:56:00:108]TVE100: PA = 0xfad00000, VA = 0xdbc71000, size:0x1000 bytes 
+[10:56:00:109]TVE 100 INIT OK.
+[10:56:00:127]HDMI(fd900000.hdmi20): paddr:0xfd900000, vaddr:0xdbc85000, drv version:1.1.09. 
+[10:56:00:127]hdmi20 driver version:1.1.09
+[10:56:00:128]random: fast init done
+[10:56:00:139]
+[10:56:00:140]LCD300 platform: Hook NA51068 driver.
+[10:56:00:169]lcd300: suspend_state:1 
+[10:56:00:180]
+[10:56:00:182]LCD210 platform: Hook NA51068 driver.
+[10:56:00:202]LCD200:0: suspend_state:1 
+[10:56:00:220][GM2D] version :1.03.21 init done vbase 0xDBD0A000, pbase 0xFAA00000 0xD9204A00 36
+[10:56:00:222]ssca_module_init:
+[10:56:00:227]ssca_probe:SSCA ver:0.01.08 initial done
+[10:56:00:257]osg_drv:Version: 1.02.1 Oct 26 2020 13:47:55
+[10:56:00:258]osg_drv:osg(0, 0) IP version 0x19100940 fire_mode = Link-List
+[10:56:00:278]osg_module_initial:kflow_osg Version: 0.0.006 Oct 26 2020 13:48:00
+[10:56:00:340]H26X Decoder IRQ mode PLT:9832X, version 0.1.32.0 built @ Oct 26 2020 13:47:55
+[10:56:00:383]H26X Encoder v0.2.70, built @ Oct 26 2020 13:47:55
+[10:56:00:442]nvt_jpg_module_init:
+[10:56:00:443]kdrv_jpg driver version: 1.00.013
+[10:56:00:456][VE]Encoder flow v1.0.15, built @ Oct 26 2020 13:48:00
+[10:56:00:481][VD]Decoder flow v1.0.11.0, built @ Oct 26 2020 13:48:00
+[10:56:00:522]kflow_di Version: 1.0.6.000 Oct 26 2020 13:48:00
+[10:56:00:552]dsp_drv_init done done
+[10:56:00:628]kflow_vpe Version: 1.1.13.000 Oct 26 2020 13:48:00
+[10:56:00:689][VCAP_INF]: VCAP316 Version: 0.2.11
+[10:56:00:710][VCAP_INF]: VCAP316 Host#0 Version: 0.2.3
+[10:56:00:722]usr.ko v2.1 Oct 26 2020 13:48:00
+[10:56:00:779]gs.ko v2.26 Oct 26 2020 13:48:00
+[10:56:00:780]GS driver, log: level(0) category(0) bmp width(64)
+[10:56:00:832]vpd.ko v2.34 (gmlib->ioctl v1.14) Oct 26 2020 13:48:00
+[10:56:00:833]datain v2.3 (minors 176 : 0x2 + 2) Oct 26 2020 13:48:01
+[10:56:00:846]dataout v2.1 (minors 192 : 0x2 + 0) Oct 26 2020 13:48:01
+[10:56:00:847]clearwin mode 0 v3.0 Oct 26 2020 13:48:01
+[10:56:00:925][Hi35xx_gpio_init, 1324]: map addr 0xFE700000
+[10:56:00:926]DriverHi35xxGpio Version[NA51068][hjli]:2020-12-01 20:40:25
+[10:56:00:936]DriverGpioI2c Version[NA51068][hjli]:2020-12-01 20:40:27
+[10:56:00:936]Gpioi2c_init config(bus_num:1):
+[10:56:00:937]set bus0 to 60 K
+[10:56:00:943]        Gpio i2c bus(0):[SCL:GPIO0_3][SDA:GPIO0_2]
+[10:56:00:988]ftiic010_tx_msg byte 0x64 fail (-5)
+[10:56:01:002][atsha204: get_parse_config, 1687]:01 23 A8 F6 B4 7F CE 6C EE
+[10:56:01:018][atsha204: atsha_init, 752]:DriverAtSha Version[NOVA51068][hjli]:2020-11-16 13:21:53 Load DriverAtSha success
+[10:56:01:019]mount squash rootfs
+[10:56:01:030]mount: mounting /dev/mmcblk0p6 on /usr/local/app/extend/ failed: No such file or directory
+[10:56:01:043]insmod: can't read '/module/wireless/mt7601Uap.ko': No such file or directory
+[10:56:01:934]   Press q -> ENTER to exit boot procedure? DWC_ETH_QOS_adjust_link: start tx/rx
+[10:56:01:935]DWC_ETH_QOS fcc00000.eth0 eth0: Link is Up - 100Mbps/Full - flow control rx/tx
+[10:56:01:942]IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[10:56:03:032]Run module_init
+[10:56:03:264]ddr_id is 0
+[10:56:03:264]DDR0: hdal_mem 0x5B000000, 0x25000000
+[10:56:03:265]### Hdal DDR0 Pool usage 556220KB (Total 606208KB Free 49988KB)
+[10:56:03:359]ddr_id is 1DDR  Type   Size       Addr          Name               Shared Pool
+[10:56:03:359]
+[10:56:03:359]ddr_id is 2
+[10:56:03:370]d 0    033   27648KB   0x5B000000   common         
+[10:56:03:371]dr_id is 3
+[10:56:03:371]ddr_ 0    024   10240KB   0x5CB00000   disp_dec_in         
+[10:56:03:372]id is 4
+[10:56:03:381]ddr_id  0    025   76512KB   0x5D500000   disp_dec_out         disp0_cap_out
+[10:56:03:382]is 5
+[10:56:03:392]ddr_id is  0    026   20480KB   0x61FB8000   disp_dec_out_ratio         
+[10:56:03:392]6
+[10:56:03:392]ddr_id is 7
+[10:56:03:393] 0    027  110472KB   0x63583000   enc_cap_out         
+[10:56:03:404] 0    029   22504KB   0x6A165000   enc_out         
+[10:56:03:404] 0    028   16416KB   0x72E8F000   enc_scl_out         
+[10:56:03:405] 0    000    9180KB   0x73E97000   disp0_in         
+[10:56:03:415] 0    107   31740KB   0x7478E000   disp0_fb         
+[10:56:03:415] 0    007    1904KB   0x7668D000   disp1_cap_out         
+[10:56:03:426] 0    001    2432KB   0x76869000   disp1_in         
+[10:56:03:426] 0    108    1016KB   0x76AC9000   disp1_fb         
+[10:56:03:439] 0    031    1680KB   0x76BC7000   au_enc         
+[10:56:03:439] 0    032     432KB   0x76D6B000   au_dec         
+[10:56:03:440] 0    101    2304KB   0x76DD7000   global_md         
+[10:56:03:447] 0    102    1120KB   0x77017000   tmnr_motion         
+[10:56:03:449] 0    103    4096KB   0x7712F000   osg         
+[10:56:03:458] 0    034   92160KB   0x7752F000   user_blk         
+[10:56:03:458](33)common_ddr0 DDR0(27648KB)
+[10:56:03:459](24)disp_dec_in_ddr0 DDR0(10240KB)
+[10:56:03:473](25)disp_dec_out_ddr0 DDR0(76512KB)
+[10:56:03:473](06)disp0_cap_out_ddr0 DDR0(0KB)
+[10:56:03:473](26)disp_dec_out_ratio_ddr0 DDR0(20480KB)
+[10:56:03:474](27)enc_cap_out_ddr0 DDR0(110472KB)
+[10:56:03:483](29)enc_out_ddr0 DDR0(22504KB)
+[10:56:03:483](28)enc_scl_out_ddr0 DDR0(16416KB)
+[10:56:03:484](00)disp0_in_ddr0 DDR0(9180KB)
+[10:56:03:499](07)disp1_cap_out_ddr0 DDR0(1904KB)
+[10:56:03:499](01)disp1_in_ddr0 DDR0(2432KB)
+[10:56:03:499](31)au_enc_ddr0 DDR0(1680KB)
+[10:56:03:500](32)au_dec_ddr0 DDR0(432KB)
+[10:56:03:500](103)osg_ddr0 DDR0(4096KB)
+[10:56:03:507](34)user_blk_ddr0 DDR0(92160KB)
+[10:56:05:252]mem_init OK
+[10:56:05:600]GM_ffb: [ver:1.2.1]INIT flcd300 OK.
+[10:56:05:601]LCD300(0): PA = 0xfda00000, VA = 0xdcb20000, size:0x10000 bytes, dfb_size=0 
+[10:56:05:611]LCD300(0): deskres(3):1024x768(XVGA), output(46):HDMI_1024x768_RGB
+[10:56:05:612]hdmi_setting, target is HDMI_1024X768P60. 
+[10:56:05:624]hdmi_polling_thread is running. 
+[10:56:05:624]LCD300: Common Driver[Ver: 1.1.13]
+[10:56:05:624]hdmi_polling_thread, apply new vid:163 setting. 
+[10:56:05:625]
+[10:56:05:635]LCD300(0) registers 1 entities to video graph! 
+[10:56:05:636]LCD300(0): Driver[Ver: 2.1.13] init ok, Chip Ver[0x20190731, 0x3210310], fb0_fb1_share:0 
+[10:56:05:644]LCDC300(0) enters IDLE mode. 
+[10:56:05:717]platform_set_pinmux_videosrc = 0, 0
+[10:56:05:717]platform_set_pinmux_videosrc = 0, 3
+[10:56:05:718]platform_set_pinmux_videosrc = 0, 10
+[10:56:05:765]LCD200:0: Desk resolution is PAL.
+[10:56:05:767]GM_ffb: [ver:0.1.23]INIT flcd200 OK.
+[10:56:05:780]LCD200:0: PA = 0xfdb00000, VA = 0xdcb40000, size:0x10000 bytes 
+[10:56:05:780]LCD200(0): deskres(1):PAL, output(1):PAL_SDTV
+[10:56:05:780]vdac_setting, target is TV_PAL . 
+[10:56:05:781]LCD200:0: Desk resolution is PAL.
+[10:56:05:786]LCD200:0 registers 1 entities to videograph! 
+[10:56:05:793]LCD200(0): Driver[Ver: 2.0.29] init ok, fb_max_width:720, fb_max_height:576, fb0_fb1_share:0
+[10:56:06:383]LCD200:0 chip_state:1 
+[10:56:06:384]LCD200:0, pmu clock:1 
+[10:56:07:035]Run App Finish
+[10:56:07:160]
+[10:56:07:262]NT9832X_emmc login: videoout_init OK
+[10:56:07:565]opt:99
+[10:56:07:589]start nxm app... 001 /usr/local/etc/init.ini s
+[10:56:07:602]Load config name=/usr/local/bin/mainbusiness delay=500 type=linux autostart=0 much crashs reboot=0
+[10:56:07:605]Load config name=/usr/local/bin/networkprotocol delay=3000 type=linux autostart=0 much crashs reboot=0
+[10:56:07:611]Load config name=/usr/local/nginx/sbin/nginx delay=4500 type=linux autostart=0 much crashs reboot=0
+[10:56:07:622]Load config name=/usr/local/nginx/sbin/streamaxfcgi delay=15000 type=linux autostart=0 much crashs reboot=0
+[10:56:07:631]Load config name=/usr/local/bin/streamaxgui delay=4000 type=linux autostart=0 much crashs reboot=0
+[10:56:08:094]Start Process /usr/local/bin/mainbusiness 
+[10:56:08:491]mainbusiness Version[XPAD][master][clwang]:2018-04-03 14:43:37 start at 54251
+[10:56:08:492]Mainbusiness Built time:Jan 21 2021 21:07:48
+[10:56:08:503][/tmp/logserver  no open][Initialize:118]open file success= /mnt/tmpfs/global.bsn
+[10:56:08:514]*****************************Commit record*******************************
+[10:56:08:525]Sdk commit [f6c4ed1--author-dlliu---submitter-dlliu---date-Thu-Jan-21-20-53-09-2021--0800--------------------------------------------------------------------------------------------------------------review-code------------------------------------------------------NOTE---985X_ALL]
+[10:56:08:548]*************************************************************************
+[10:56:08:552][/tmp/logserver  no open][RM_SDK_Storage_Initialize:34]storage init, s_globalImpl:0x1dcc958 g_blackbox:0x1dccb70 g_alarmlog:0x1dccbb0
+[10:56:08:845][MSG.CLIENT][mainbusiness][ERROR][streamaxmsg.cpp MidwareMsgInitialize 12][1970/01/01 15:04:11]thread [MidwareMsgInitialize] pid:369 tid:372
+[10:56:08:860]ready Create socket port = 17778 this=0x6890ae20 pid:369 tid:372!!!!
+[10:56:08:868][MSG.CLIENT][mainbusiness][ERROR][posixtcpsocket.cpp CreateSocket 31][1970/01/01 15:04:11]ready Create socket port = 17778 this=0x6890ae20 pid:369 tid:372!!!!
+[10:56:08:879][MSG.CLIENT][mainbusiness][ERROR][posixtcpsocket.cpp CreateSocket 36][1970/01/01 15:04:11]Create success 13!!!!
+[10:56:08:890][MSG.CLIENT][mainbusiness][ERROR][streamaxmsg.cpp MidwareMsgInitialize 12][1970/01/01 15:04:11]thread [MidwareMsgInitialize] pid:369 tid:369
+[10:56:08:902]ready Create socket port = 17778 this=0x1dd4e00 pid:369 tid:369!!!!
+[10:56:08:912][MSG.CLIENT][mainbusiness][ERROR][posixtcpsocket.cpp CreateSocket 31][1970/01/01 15:04:11]ready Create socket port = 17778 this=0x1dd4e00 pid:369 tid:369!!!!
+[10:56:08:924][MSG.CLIENT][mainbusiness][ERROR][posixtcpsocket.cpp CreateSocket 36][1970/01/01 15:04:11]Create success 14!!!!
+[10:56:08:934][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp AsyncTaskThreadImpl 374][1970/01/01 15:04:11]AsyncTaskThreadImpl pid:369 tid:375
+[10:56:08:946][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp AsyncCheckTaskThreadImpl 391][1970/01/01 15:04:11]thread [AsyncCheckTaskThreadImpl] pid:369 tid:376
+[10:56:08:964]MidwareLogSetCfg init
+[10:56:08:964][PARAM][mainbusiness][ERROR][Param.cpp parameterservice 1785][1970/01/01 15:04:11]parameterservice pid:369 tid:377
+[10:56:08:975][PARAM][mainbusiness][ERROR][Param.cpp parameterservice 1790][1970/01/01 15:04:11]Initialize parameter:00010001!
+[10:56:08:980][PARAM][mainbusiness][ERROR][Param.cpp Initialize 1754][1970/01/01 15:04:11]thread [Initialize] pid:369 tid:377
+[10:56:08:991][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp StartService 173][1970/01/01 15:04:11]Get Param ...
+[10:56:09:002][MSG.SERVER][mainbusiness][CRITICAL][centerserver.cpp centerserver 57][1970/01/01 15:04:11]16.17767
+[10:56:09:010][MSG.SERVER][mainbusiness][CRITICAL][centerserver.cpp centerserver 57][1970/01/01 15:04:11]17.9158
+[10:56:09:083][PARAM][mainbusiness][CRITICAL][Param.cpp LoadParameter 1736][1970/01/01 15:04:11]param operate type:0
+[10:56:09:203][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp StartService 173][1970/01/01 15:04:11]Get Param ...
+[10:56:09:217][PARAM][mainbusiness][CRITICAL][Param.cpp ReadParamMap 1713][1970/01/01 15:04:11]load param complete!
+[10:56:09:229][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:11]Not in LH, num:0, L:1, H:1000
+[10:56:09:239][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:11]Not in LH, num:0, L:1, H:1000
+[10:56:09:250][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:11]Not in LH, num:0, L:1, H:1000
+[10:56:09:264][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:11]Not in LH, num:0, L:1, H:1000
+[10:56:09:266][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:11]Not in LH, num:0, L:1, H:1000
+[10:56:09:273][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:11]Not in LH, num:0, L:1, H:1000
+[10:56:09:284][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:11]Not in LH, num:0, L:1, H:1000
+[10:56:09:294][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:11]Not in LH, num:0, L:1, H:1000
+[10:56:09:490][PARAM][mainbusiness][ERROR][Param.cpp CheckRange 149][1970/01/01 15:04:12]Not in LH, num:0, L:1, H:255
+[10:56:09:506][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp StartService 173][1970/01/01 15:04:12]Get Param ...
+[10:56:09:710][MSG.CLIENT][mainbusiness][ERROR][streamaxmsg.cpp MidwareMsgInitialize 12][1970/01/01 15:04:12]thread [MidwareMsgInitialize] pid:369 tid:377
+[10:56:09:726]ready Create socket port = 17778 this=0x655ad0a8 pid:369 tid:377!!!!
+[10:56:09:732][MSG.CLIENT][mainbusiness][ERROR][posixtcpsocket.cpp CreateSocket 31][1970/01/01 15:04:12]ready Create socket port = 17778 this=0x655ad0a8 pid:369 tid:377!!!!
+[10:56:09:744][MSG.CLIENT][mainbusiness][ERROR][posixtcpsocket.cpp CreateSocket 36][1970/01/01 15:04:12]Create success 18!!!!
+[10:56:09:756][PARAM][mainbusiness][ERROR][Param.cpp parameterservice 1792][1970/01/01 15:04:12]Initialize 11 parameter:00010001!
+[10:56:09:800][MSG.SERVER][mainbusiness][CRITICAL][centerserver.cpp centerserver 57][1970/01/01 15:04:12]19.39017
+[10:56:09:815][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp StartService 173][1970/01/01 15:04:12]Get Param ...
+[10:56:10:100][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp StartService 173][1970/01/01 15:04:12]Get Param ...
+[10:56:10:112][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp ParseIpCameraNumber 557][1970/01/01 15:04:12]...h...
+[10:56:10:124][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp ParseIpCameraNumber 584][1970/01/01 15:04:12]mode:0
+[10:56:10:400][STREAMAX.SDK][mainbusiness][ERROR][cstreamaxsdkimpl.cpp StartService 177][1970/01/01 15:04:12]Get Param success!
+[10:56:10:414]********************************************
+[10:56:10:414]**            avstreaming 2.0             **
+[10:56:10:415]**            avstreaming-AD              **
+[10:56:10:425]********************************************
+[10:56:10:426]**            avstreaming-AI              **
+[10:56:10:433][DEV.SERIALMANAGER][mainbusiness][ERROR][peripheralmanager.cpp serialservice 4977][1970/01/01 15:04:12]serialservice pid:369 tid:379
+[10:56:10:448]********************************************
+[10:56:10:448]**            avstreaming-VI              **
+[10:56:10:448]********************************************
+[10:56:10:459]**            avstreaming-AENC            **
+[10:56:10:459]********************************************
+[10:56:10:460]**            avstreaming-VENC            **
+[10:56:10:469]********************************************
+[10:56:10:470]**            avstreaming-ADEC            **
+[10:56:10:470]********************************************
+[10:56:10:483]**            avstreaming-VDEC            **
+[10:56:10:484]********************************************
+[10:56:10:492]**            avstreaming-AO              **
+[10:56:10:492]********************************************
+[10:56:10:493]**            avstreaming-VO              **
+[10:56:10:503]********************************************
+[10:56:10:503]**            avstreaming-VPSS            **
+[10:56:10:504]********************************************
+[10:56:10:514]**            avstreaming-TTS             **
+[10:56:10:514]********************************************
+[10:56:10:515]**            avstreaming-MP3             **
+[10:56:10:526]********************************************
+[10:56:10:527]**         Jan 21 2021 21:02:20           **
+[10:56:10:534]********************************************
+[10:56:10:537][DEV.DEVICEMANAGER][mainbusiness][ERROR][devicemanager.cpp deviceservice 713][1970/01/01 15:04:12]deviceservice pid:369 tid:381
+[10:56:10:548][STORAGE.MANAGER][mainbusiness][ERROR][StorageManage.cpp StorageService 877][1970/01/01 15:04:12]StorageService pid:369 tid:382
+[10:56:10:561][NETDEV.MANAGER][mainbusiness][CRITICAL][networkdevmanager.cpp networkdevservice 1575][1970/01/01 15:04:12]networkdevservice pid:369 tid:383
+[10:56:10:576][NETDEV.MANAGER][mainbusiness][CRITICAL][networkdevmanager.cpp networkdevservice 1579][1970/01/01 15:04:12]networkdevservice waitting:1000
+[10:56:10:588][AV.COMMON][mainbusiness][ERROR][MainThread.cpp AvstreamingMainThread 145][1970/01/01 15:04:12]avthread, AvMainThread, pid:369 tid:380
+[10:56:10:599][AV.COMMON][mainbusiness][CRITICAL][MainThread.cpp AvstreamingMainThread 153][1970/01/01 15:04:12]u32ProductGID:186, u32ProductTID:183
+[10:56:10:610][AV.COMMON][mainbusiness][CRITICAL][MainThread.cpp AvstreamingMainThread 154][1970/01/01 15:04:12]u16VideoInNum:8, u16VideoIpNum:4
+[10:56:10:622][AV.INTERFACE][mainbusiness][CRITICAL][streamaxavinterface.cpp CStreamaxAvInterface 38][1970/01/01 15:04:13]validmask:0x0 ,initialMark:0xfff 
+[10:56:10:632][AV.INTERFACE][mainbusiness][CRITICAL][streamaxavinterface.cpp CStreamaxAvInterface 47][1970/01/01 15:04:13]videoLossMask = 0xfff
+[10:56:10:642]killall: commonfs: no process killed
+[10:56:10:646]mainbusiness : SignalHander(signal:17)(pid:369 tid:369)
+[10:56:10:655][MAINBS.BASIC][mainbusiness][ERROR][main.cpp basic_signal_handle 35][1970/01/01 15:04:13]basic_signal_handle children process exit: 0, signal:17
+[10:56:10:666][AV.INTERFACE][mainbusiness][CRITICAL][streamaxav.cpp RM_SDK_AV_DeInit 36][1970/01/01 15:04:13][avstreaming-2.0] 
+[10:56:10:677][AREALINE.FENCE][mainbusiness][ERROR][electronicfence.cpp HandleElectronicFenceService 4028][1970/01/01 15:04:13]HandleElectronicFenceService pid:369 tid:385
+[10:56:10:692][STORAGE.MANAGER][mainbusiness][ERROR][StorageManage.cpp Init 189][1970/01/01 15:04:13]thread [Init] pid:369 tid:382
+[10:56:10:702][MSG.CLIENT][mainbusiness][ERROR][streamaxmsg.cpp MidwareMsgInitialize 12][1970/01/01 15:04:13]thread [MidwareMsgInitialize] pid:369 tid:382
+[10:56:10:712]ready Create socket port = 17778 this=0x653c08c0 pid:369 tid:382!!!!
+[10:56:10:721][MSG.CLIENT][mainbusiness][ERROR][posixtcpsocket.cpp CreateSocket 31][1970/01/01 15:04:13]ready Create socket port = 17778 this=0x653c08c0 pid:369 tid:382!!!!
+[10:56:10:733][MSG.CLIENT][mainbusiness][ERROR][posixtcpsocket.cpp CreateSocket 36][1970/01/01 15:04:13]Create success 20!!!!
+[10:56:10:744][STORAGE.MANAGER][mainbusiness][ERROR][StorageManage.cpp Init 195][1970/01/01 15:04:13]====Stoarge framework start to receive all msg====
+[10:56:10:759][MSG.SERVER][mainbusiness][CRITICAL][centerserver.cpp centerserver 57][1970/01/01 15:04:13]21.18547
+[10:56:10:760]Start Process /usr/local/bin/networkprotocol 
+[10:56:10:826][NETWORK.CORE][networkprotocol][ERROR][main.cpp main 52][1970/01/01 15:04:13]****** Welcome to use networkprotocol [Jan 21 2021 : 21:04:58], main thread id: 386 ******
+[10:56:10:848][STREAMAX.SDK][networkprotocol][ERROR][cstreamaxsdkimpl.cpp Initialize 118][1970/01/01 15:04:13]open file success= /mnt/tmpfs/global.bsn
+[10:56:10:857]*****************************Commit record*******************************
+[10:56:10:861]Sdk commit [f6c4ed1--author-dlliu---submitter-dlliu---date-Thu-Jan-21-20-53-09-2021--0800--------------------------------------------------------------------------------------------------------------review-code------------------------------------------------------NOTE---985X_ALL]
+[10:56:10:886]*************************************************************************
+[10:56:10:893][STORAGE.MANAGER][networkprotocol][ERROR][streamaxstorage.cpp RM_SDK_Storage_Initialize 34][1970/01/01 15:04:13]storage init, s_globalImpl:0x1546758 g_blackbox:0x1546970 g_alarmlog:0x15469c8
+[10:56:10:915][MSG.CLIENT][networkprotocol][ERROR][streamaxmsg.cpp MidwareMsgInitialize 12][1970/01/01 15:04:13]thread [MidwareMsgInitialize] pid:386 tid:386
+[10:56:10:923]ready Create socket port = 17778 this=0x154aa18 pid:386 tid:386!!!!
+[10:56:10:928][MSG.CLIENT][networkprotocol][ERROR][posixtcpsocket.cpp CreateSocket 31][1970/01/01 15:04:13]ready Create socket port = 17778 this=0x154aa18 pid:386 tid:386!!!!
+[10:56:10:948][MSG.CLIENT][networkprotocol][ERROR][posixtcpsocket.cpp CreateSocket 36][1970/01/01 15:04:13]Create success 8!!!!
+[10:56:10:952][STREAMAX.SDK][networkprotocol][ERROR][cstreamaxsdkimpl.cpp AsyncTaskThreadImpl 374][1970/01/01 15:04:13]AsyncTaskThreadImpl pid:386 tid:389
+[10:56:10:969][STREAMAX.SDK][networkprotocol][ERROR][cstreamaxsdkimpl.cpp AsyncCheckTaskThreadImpl 391][1970/01/01 15:04:13]thread [AsyncCheckTaskThreadImpl] pid:386 tid:390
+[10:56:10:979]MidwareLogSetCfg init
+[10:56:10:982][AV.INTERFACE][networkprotocol][CRITICAL][streamaxavinterface.cpp CStreamaxAvInterface 38][1970/01/01 15:04:13]validmask:0xfff ,initialMark:0xfff 
+[10:56:10:994][AV.INTERFACE][networkprotocol][CRITICAL][streamaxavinterface.cpp CStreamaxAvInterface 47][1970/01/01 15:04:13]videoLossMask = 0xfff
+[10:56:11:003][STREAMAX.SDK][networkprotocol][ERROR][cstreamaxsdkimpl.cpp Initialize 118][1970/01/01 15:04:13]open file success= /mnt/tmpfs/global.bsn
+[10:56:11:015]*****************************Commit record*******************************
+[10:56:11:026]Sdk commit [f6c4ed1--author-dlliu---submitter-dlliu---date-Thu-Jan-21-20-53-09-2021--0800--------------------------------------------------------------------------------------------------------------review-code------------------------------------------------------NOTE---985X_ALL]
+[10:56:11:049]*************************************************************************
+[10:56:11:058][AV.INTERFACE][networkprotocol][CRITICAL][streamaxav.cpp RM_SDK_AV_Initialize 26][1970/01/01 15:04:13][avstreaming-2.0] 
+[10:56:11:070][STORAGE.MANAGER][networkprotocol][ERROR][streamaxstorage.cpp RM_SDK_Storage_Initialize 34][1970/01/01 15:04:13]storage init, s_globalImpl:0x1546758 g_blackbox:0x1546970 g_alarmlog:0x15469c8
+[10:56:11:081][MSG.SERVER][mainbusiness][CRITICAL][centerserver.cpp centerserver 57][1970/01/01 15:04:13]22.56401
+[10:56:11:092][STORAGE.MANAGER][mainbusiness][ERROR][StorageManage.cpp SendRequestMsg 525][1970/01/01 15:04:13]send request msg, count=1
+[10:56:11:446][end_log:20210202_10:56:11:445]
