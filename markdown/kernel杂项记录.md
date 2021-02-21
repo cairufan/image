@@ -44,4 +44,3 @@ sys_init_module调用load_module，后者将在内核空间利用vmalloc分配�
 ![QQ截图20210219155403](https://cdn.jsdelivr.net/gh/cairufan/image@main//picture/QQ截图20210219155403.png)
 
 ---
-
