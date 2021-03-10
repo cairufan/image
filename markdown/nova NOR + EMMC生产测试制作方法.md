@@ -24,33 +24,32 @@ cd /var/mnt/usbstate/front/
 
 ## 导出SPI NOR 分区内容
 
-dd if=/dev/mtdblock0 of=Firmware_D5X_XRV4_SPI_NOR_Txxxxxx bs=1M count=1;
+dd if=/dev/mtdblock0 of=Firmware_D5X_XRV4_SPI_NOR_Txxxxxxxx bs=1M count=1;  
+
+---
+
+备注：  
+Firmware_D5X_XRV4_SPI_NOR_Txxxxxxxx为输出的文件名，根据实际机型来填写，替换其中的DX5_XRV4位实际机型名，Txxxxxxxx替换为实际日期
+
+---
 
 ## 导出emmc 分区内容
 
-**工厂生成用**
 dd if=/dev/mmcblk0 of=Firmware_D5X_XRV4_EMMC_Txxxxxx bs=1M count=988;
 
-**demo自测用**
-dd if=/dev/mmcblk0 of=Firmware_D5X_XRV4_EMMC_Txxxxxx bs=1M count=24;
+---
 
-退出u盘目录，同步u盘信息
+备注：  
+Firmware_D5X_XRV4_EMMC_Txxxxxx为输出的文件名，根据实际机型来填写，替换其中的DX5_XRV4位实际机型名，Txxxxxxxx替换为实际日期
+
+---
+
+## 退出u盘目录，同步u盘信息
 
 cd /
 
 sync
 
+## 拔出U盘
+
 u盘里的Firmware俩文件即分别为SPI NOR 和EMMC烧录文件
-
-
-
-
-
-
-
-
-
-
-
-
-
