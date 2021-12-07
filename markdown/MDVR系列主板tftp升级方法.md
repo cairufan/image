@@ -1,6 +1,6 @@
 # MDVR系列产品 tftp分区升级方法
 
-## 32M 主机
+## 1、32M 主机
 
 MDVR N9M X5_III/X7_I/T5 系列主板tftp升级方法
 
@@ -136,7 +136,7 @@ sf write 0x82000000 0x1A60000 ${filesize}
 ### APP FIRMWARE
 
 ```
-tftp 0x82000000 STM_FIRMWARE_0x19_T20030503;
+tftp 0x82000000 X1SE-V252.C-Factory-T19123102;
 sf probe 0;	sf erase 0x1B60000 0x1E0000
 sf write 0x82000000 0x1B60000 ${filesize}
 ```
@@ -199,7 +199,7 @@ sf probe 0;sf erase 0x560000 0x10000;reset;
 
 
 
-## 16M IPC	
+## 2、16M IPC	
 
 MDVR N9M IPC 712C6 等16M Flash 系列tftp方式
 
@@ -566,7 +566,7 @@ setenv ipaddr 192.168.52.110;setenv serverip 192.168.52.108;
 	客户参数
 	sf probe 0;sf erase 0x1FE0000 0x20000;
 
-## 256M NAND
+## 3、256M NAND
 
 setenv ipaddr 192.168.52.110;setenv serverip 192.168.52.13;
 
@@ -628,7 +628,7 @@ nand erase 0x5500000 0x9400000;nand write.yaffs 0x85000000 0x5500000 ${filesize}
 ​	nand erase 0xed00000 0x100000;
 ​	
 
-## 8G EMMC 海思
+## 4、8G EMMC 海思
 
 setenv ipaddr 192.168.52.110;setenv serverip 192.168.52.13;
 
@@ -637,7 +637,7 @@ setenv ipaddr 192.168.52.110;setenv serverip 192.168.52.13;
 ### uboot
 
 ```
-mw.l 	0x82000000 0x0 0x100000;tftp 0x82000000 STM_ADkit_UBOOT_T20121500;
+mw.l 0x82000000 0x0 0x100000;tftp 0x82000000 STM_ADPRO_UBOOT_T20082100;
 mw.l 	0x82000000 0x0 0x100000;tftp 0x82000000 STM_940_VB_UBOOT_T20121700;
 mw.l 	0x82000000 0x0 0x100000;tftp 0x82000000 STM_D43_UBOOT_T20112500;
 ```
@@ -675,39 +675,37 @@ mmc write 0 0x82000000 0x800 0x1D80;
 ### rootfs
 
 ```
-mw.l 	0x82000000 0x0 0x1000000;tftp 0x82000000 STM_D43_ROOTFS_T20111800_NFS;
-mw.l 	0x82000000 0x0 0x1000000;tftp 0x82000000 STM_ADkit_ROOTFS_T20120800_NFS;
+mw.l 0x82000000 0x0 0x1000000;tftp 0x82000000 STM_ROOTFS_0x13_T20082100_NFS;
+setenv serverip 192.168.50.25;setenv ipaddr 192.168.50.114;mw.l 0x82000000 0x0 0x1000000;tftp 0x82000000 STM_C6D4.0_ROOTFS_T21050601;mmc write 0 0x82000000 0x2800 0x4D80;
 
-mw.l 	0x82000000 0x0 0x1000000;tftp 0x82000000 STM_AX4_ROOTFS_T20080400_NFS;	
 ```
 
 
 
-	mmc write 0 0x82000000 0x2800 0x1D80;
 	#mmc write 0 ${fileaddr} ${Root_offset_blk} ${blkcnt};
 
 ### local
 
-​	tftp 0x82000000 STM_ADkit_LOCAL_T20111800;
+tftp 0x82000000 STM_LOCAL_0x14_T20120204;
 
-tftp 0x82000000 STM_D43_LOCAL_T20112500;	
-
-	mmc write 0 0x82000000 0xC800 0x9CA0;
+	mmc write 0 0x82000000 0xC800 0xC000;
 	#mmc write 0 ${fileaddr} ${AppLocal_offset_blk} ${blkcnt};
 
 ### AI/EXTEND
 
-​	tftp 0x82000000 STM_EXTEND_0x15_T20042195;
-​	
+tftp 0x82000000 STM_EXTEND_0x15_T20120204;
+	
 
-	mmc write 0 0x82000000 0x4C800 0x2F1A0;
+	mmc write 0 0x82000000 0x4C800 0x26000;
 	#mmc write 0 ${fileaddr} ${AppExt_offset_blk} ${blkcnt};
 
 ### backup system
 
-​	mw.l 	0x82000000 0x0 0x500000;tftp 0x82000000 STM_3516DV300_BACKUP_T20111800_01_SHA;
+```
+mw.l 0x82000000 0x0 0x500000;tftp 0x82000000 STM_3516DV300_BACKUP_T20112100_C6D40;
+```
 
-mw.l 	0x82000000 0x0 0x500000;tftp 0x82000000 STM_3516DV300_BACKUP_T20092100;	
+
 
 	mmc write 0 0x82000000 0xA800 0x2000;
 	#mmc write 0 ${fileaddr} ${BKSystem_offset_blk} ${blkcnt};
@@ -737,7 +735,7 @@ mw.l 0x82000000 0x0 0x100000;mmc write 0 0x82000000 0x178800 0x800;
 encrypt init;encrypt cnt set 0;
 status clr cnt;reset;
 
-## 16G EMMC海思
+## 5、16G EMMC海思
 
 env set ipaddr 192.168.55.12;env set serverip 192.168.55.234;
 
@@ -825,7 +823,7 @@ tftp 0x42000000 STM_A8PRO_LOCAL_T20120400;
 
 ### backup system
 
-​	mw.l 	0x42000000 0x0 0xA00000;tftp 0x42000000 STM_3531DV200_BACKUP_T20092200;
+mw.l 	0x42000000 0x0 0xA00000;tftp 0x42000000 STM_3531DV200_BACKUP_T20092200;
 ​	
 
 	mmc write 0 0x42000000 0x10800 0x5000;
@@ -876,7 +874,228 @@ mw.l 0x0 0xffffffff 0x3000000;tftp 0x0 rootfs_1.rw.ubifs.bin;nand erase 0x396000
 6).app:
 mw.l 0x0 0xffffffff 0x3000000;tftp 0x0 NVR_8CH.nand.ubifs.bin;nand erase 0x5E60000 0x21A0000;nand write.trimffs 0x0 0x5E60000 ${filesize};
 
-## nova 2M+8G
+## 6、nova 32M nor(9832X)
+
+### loader
+
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+mw.l 0x1000000 0xffffffff 0x50000;tftpboot 0x1000000 loader;sf probe 0;sf erase 0 0x10000;sf write 0x1000000 0x0 0x10000;
+
+### evb
+
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+mw.l 0x1000000 0xffffffff 0x50000;tftpboot 0x1000000 STM_D5X_XRV4_FDT_T20110900;sf probe 0;sf erase 0x10000 0x20000;sf write 0x1000000 0x10000 0x20000;
+
+### uboot
+
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_UBOOT_0x11_T20121500;sf probe 0;sf erase 0x50000 0x60000;sf write 0x1000000 0x50000 0x60000;
+
+cvbs logo
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 cvbs.jpg;sf probe 0;sf erase 0xB0000 0x20000;sf write 0x1000000 0xB0000 0x20000;
+upgrade logo
+mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 upgrade.jpg;sf probe 0;sf erase 0xD0000 0x10000;sf write 0x1000000 0xD0000 0x7000;
+vga logo
+#mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 vga.jpg;sf probe 0;sf erase 0xD7000 0x10000;sf write 0x1000000 0xD7000 0x19000;
+mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 vga.jpg;sf probe 0;sf write 0x1000000 0xD7000 0x19000;
+
+### kernel
+
+setenv ipaddr 192.168.55.122;setenv serverip 192.168.55.8;
+mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_9832X_KERNEL_T21010500;sf probe 0;sf erase 0xF0000 0x300000;sf write 0x1000000 0xF0000 ${filesize};
+
+### rootfs
+
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_X5N_ROOTFS_T21032600;sf probe 0;sf erase 0x3F0000 0x300000;sf write 0x1000000 0x3F0000 ${filesize};
+
+### local
+
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+mw.l 0x1000000 0xffffffff 0x2000000;tftpboot 0x1000000 STM_LOCAL_0x14_T20122696;sf probe 0;sf erase 0x6F0000 0x1650000;sf write 0x1000000 0x6F0000 ${filesize};
+
+### 擦除参数区、状态区
+
+sf probe 0;sf erase 0x1d40000 0x40000;sf erase 0x1da0000 0x40000
+
+### 擦除状态区
+
+sf probe 0;sf erase 0x1d70000 0x10000;sf erase 0x1dd0000 0x10000
+
+### 导出参数区
+
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+sf probe 0;sf read 0x1000000 0x1d40000 0x40000;tftpput 0x1000000 0x40000 flash_state;
+sf probe 0;sf read 0x1000000 0x1da0000 0x40000;tftpput 0x1000000 0x40000 flash_state_bak;
+
+### 导入参数分区
+
+mw.l 0x1000000 0xffffffff 0x50000;tftpboot 0x1000000 flash_state;sf probe 0;sf erase 0x1d40000 0x40000;sf write 0x1000000 0x1d40000 0x40000;
+mw.l 0x1000000 0xffffffff 0x50000;tftpboot 0x1000000 flash_state_bak;sf probe 0;sf erase 0x1da0000 0x40000;sf write 0x1000000 0x1da0000 0x40000;
+
+### backup
+
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+mw.l 0x1000000 0xffffffff 0x200000;tftpboot 0x1000000 uImage.bin;sf probe 0;sf erase 0x1E00000 0x200000;sf write 0x1000000 0x1e00000 ${filesize};
+
+setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
+mw.l 0x1d600000 0xffffffff 0x500000;tftpboot 0x1d600000 uImage.bin;bootm 0x1d600000
+
+### 擦除备份系统
+
+sf probe 0;sf erase 0x1e00000 0x200000
+
+### 清计数和重新计算crc
+
+encrypt init;encrypt cnt set 0;
+status set crc;reset;
+
+### 导入生产测试包
+
+sf probe 0;tftpboot 0x1000000 Firmware_X5N_V320_T200820.03_C0010_TEST
+sf probe 0;sf erase 0 0x2000000;sf write 0x1000000 0 0x2000000;
+
+## 7、nova 98316 32M SPI_NOR(X7N)
+
+### loader
+
+​    mw.l 0x12000000 0xffffffff 0x10000;mw.l 0x13000000 0xffffffff 0x10000;
+
+​    tftpboot 0x12000000 x7n/STM_X7N_LOADER_T20101200
+
+​    sf probe 0;sf erase 0x0 0x10000;sf write 0x12000000 0x0 0x10000;
+​    sf read 0x13000000 0x0 0x10000;cmp.b 0x12000000 0x13000000 0x10000;
+​    出现Total of 65536 byte(s) were the same则OK
+
+导出loader_with_head
+    mw.l 0x12000000 0xffffffff 0x10000;mw.l 0x13000000 0xffffffff 0x10000;
+    sf probe 0;sf erase 0x1AE0000 0x20000;sf read 0x12000000 0x0 0x10000;sf write 0x12000000 0x1AE0000 0x10000;
+    tftp -p 192.168.55.13 -l /dev/mtdblock9 -r STM_X7N_LOADRER_T20090800
+    dd if=STM_X7N_LOADRER_T2020090800 of=STM_X7N_LOADRER_T2020090800_withe_head bs=64k count=1
+
+### fdt
+
+​    mw.l 0x12000000 0xffffffff 0x10000;mw.l 0x13000000 0xffffffff 0x10000;
+
+​    tftpboot 0x12000000 x7n/STM_X7N_FDT_T21012600
+
+​    sf probe 0;sf erase 0x10000 0x10000;sf write 0x12000000 0x10000 0x10000;
+​    sf read 0x13000000 0x10000 0x10000;cmp.b 0x12000000 0x13000000 0x10000;
+​    出现Total of 65536 byte(s) were the same则OK
+
+### uboot (Size = 0xA0000)
+
+​    mw.l 0x12000000 0xffffffff 0xA0000;mw.l 0x13000000 0xffffffff 0xA0000;
+
+​    tftpboot 0x12000000 x7nh1608/STM_X7NH1608_UBOOT_T21021900
+
+​    sf probe 0;sf erase 0x20000 0x60000;sf write 0x12000000 0x20000 0x60000;
+​    sf probe 0;sf erase 0x20000 0xA0000;sf write 0x12000000 0x20000 0xA0000;
+
+​    sf read 0x13000000 0x20000 0x60000;cmp.b 0x12000000 0x13000000 0x60000;
+​    出现Total of 393216 byte(s) were the same则OK
+
+CVBS 
+    mw.l 0x12000000 0xffffffff 0x20000
+    tftpboot 0x12000000 x7n/cvbs.jpg
+    sf probe 0; sf erase 0x80000 0x20000; sf write 0x12000000 0x80000 0x20000;
+
+Upgrade
+    mw.l 0x12000000 0xffffffff 0x100000
+    tftpboot 0x12000000 x7n/upgrade.jpg
+    sf probe 0; sf erase 0xA0000 0x20000; sf write 0x12000000 0xA0000 0x7000
+
+VGA
+    mw.l 0x12000000 0xffffffff 0x100000
+    tftpboot 0x12000000 x7n/vga.jpg
+    sf probe 0; sf erase 0xA7000 0x10000; sf write 0x12000000 0xA7000 0x10000
+
+### kernel
+
+​    mw.l 0x12000000 0xffffffff 0x300000;mw.l 0x13000000 0xffffffff 0x300000;
+
+​    tftpboot 0x12000000 x7n/STM_X7N_KERNEL_T21012700
+
+​    sf probe 0;sf erase 0xC0000 0x300000;sf write 0x12000000 0xC0000 0x300000;
+​    sf read 0x13000000 0xC0000 0x300000;cmp.b 0x12000000 0x13000000 0x300000;
+​    出现Total of 3145728 byte(s) were the same则OK
+
+### rootfs
+
+​    mw.l 0x12000000 0xffffffff 0x300000;mw.l 0x13000000 0xffffffff 0x300000;
+
+​    tftpboot 0x12000000 x7nh1608/STM_X7NH1608_ROOTFS_T21022400
+
+​    sf probe 0;sf erase 0x3C0000 0x300000;sf write 0x12000000 0x3C0000 0x300000;
+​    sf read 0x13000000 0x3C0000 0x300000;cmp.b 0x12000000 0x13000000 0x300000;
+​    出现Total of 3145728 byte(s) were the same则OK
+
+### local
+
+​    mw.l 0x12000000 0xffffffff 0x1380000;mw.l 0x13000000 0xffffffff 0x1380000;
+
+​    tftpboot 0x12000000 x7nh1608/software/STM_LOCAL_0x14_T21022503
+
+​    sf probe 0;sf erase 0x6C0000 0x1380000;sf write 0x12000000 0x6C0000 0x1380000;
+​    sf read 0x13000000 0x6C0000 0x1380000;cmp.b 0x12000000 0x13000000 0x1380000;
+​    出现Total of 20447232 byte(s) were the same则OK
+
+### SysPara
+
+​    mw.l 0x12000000 0xffffffff 0x40000;mw.l 0x13000000 0xffffffff 0x40000;
+
+​    sf probe 0;sf erase 0x1A40000 0x40000;sf write 0x12000000 0x1A40000 0x40000;
+
+### CustPara
+
+​    mw.l 0x12000000 0xffffffff 0x20000;mw.l 0x13000000 0xffffffff 0x20000;
+
+​    sf probe 0;sf erase 0x1A80000 0x20000;sf write 0x12000000 0x1A80000 0x20000;
+
+###  BKSysPara
+
+​    mw.l 0x12000000 0xffffffff 0x40000;mw.l 0x13000000 0xffffffff 0x40000;
+
+​    sf probe 0;sf erase 0x1AA0000 0x40000;sf write 0x12000000 0x1AA0000 0x40000;
+
+### BkCustPara
+
+​    mw.l 0x12000000 0xffffffff 0x20000;mw.l 0x13000000 0xffffffff 0x20000;
+
+​    tftpboot 0x12000000 x7n/STM_X7N_BKUPSYSTEM_T20100500
+
+​    sf probe 0;sf erase 0x1AE0000 0x20000;sf write 0x12000000 0x1AE0000 0x20000;
+​    sf read 0x13000000 0x1AE0000 0x20000;cmp.b 0x12000000 0x13000000 0x20000;
+
+### ramdisk
+
+​    mw.l 0x12000000 0xffffffff 0x300000;mw.l 0x13000000 0xffffffff 0x300000;
+
+​    tftpboot 0x12000000 x7n/STM_X7N_RAMDISK_T20102100
+
+​    sf probe 0;sf erase 0x1B00000 0x300000;sf write 0x12000000 0x1B00000 0x300000;
+​    sf read 0x13000000 0x1B00000 0x300000;cmp.b 0x12000000 0x13000000 0x300000;
+​    出现Total of 3145728 byte(s) were the same则OK
+
+### bkupsystem
+
+​    mw.l 0x12000000 0xffffffff 0x200000;mw.l 0x13000000 0xffffffff 0x200000;
+
+​    tftpboot 0x12000000 x7n/STM_NT9831X_BKSYSTEM_T20101000
+​    tftpboot 0x12000000 x7n/STM_NT9831X_BKSYSTEM_T21020300
+
+​    sf probe 0;sf erase 0x1E00000 0x200000;sf write 0x12000000 0x1E00000 0x200000;
+​    sf read 0x13000000 0x1E00000 0x200000;cmp.b 0x12000000 0x13000000 0x200000;
+​    出现Total of 2097152 byte(s) were the same则OK
+
+### 手动进入备份系统
+
+​    pcie;
+​    sf probe 0;sf read 0x2000000 0x1E00000 0x200000;
+​    bootm 0x2000000 - 0x1f00000;
+
+## 8、nova 2M+8G
 
 主要涉及产品 nt98321/nt98323
 
@@ -898,23 +1117,9 @@ mw.l 0x1000000 0xffffffff 0x50000;tftpboot 0x1000000 LD98321A_emmc.bin;sf probe 
 ### evb/FDT
 
 ```
-setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
-mw.l 0x1000000 0xffffffff 0x50000;tftpboot 0x1000000 nvt-na51068-evb.bin;sf probe 0;sf erase 0x10000 0x20000;sf write 0x1000000 0x10000 0x20000;
-
-mw.l 0x1000000 0xffffffff 0x50000;tftpboot 0x1000000 nvt-na51068-evb_atsha_i2c.bin;sf probe 0;sf erase 0x10000 0x20000;sf write 0x1000000 0x10000 0x20000;
-
-mw.l 0x1000000 0xffffffff 0x50000;tftpboot 0x1000000 STM_D5X_XRV4_FDT_T20110300;sf probe 0;sf erase 0x10000 0x20000;sf write 0x1000000 0x10000 0x20000;
-
-
-
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 nvt-na51068-evb_emmc.bin;
-
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_FDT_T111500_I2C;
-
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_FDT_T20112400_EMMC;
-
+mw.l 0x1000000 0x0 0x100000;tftpboot 0x1000000 nvt-na51068-evb.bin;
+mw.l 0x1000000 0x0 0x100000;tftpboot 0x1000000 STM_MDR608_FDT_T21051400;
 mmc write 0x1000000 0x200 0x200;
-
 ```
 
 
@@ -922,21 +1127,10 @@ mmc write 0x1000000 0x200 0x200;
 ### uboot
 
 ```
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_UBOOT_T20102400;sf probe 0;sf erase 0x50000 0x60000;sf write 0x1000000 0x50000 0x60000;
+mw.l 0x1000000 0x0 0x100000;tftpboot 0x1000000 STM_HD6N_1200_UBOOT_T20011300;
+mw.l 0x1000000 0x0 0x100000;tftpboot 0x1000000 STM_HD6N_600_UBOOT_T21011800;
 
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_UBOOT_T20102400_ATSHA;sf probe 0;sf erase 0x50000 0x60000;sf write 0x1000000 0x50000 0x60000;
-
-
-
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_UBOOT_T20110301;sf probe 0;sf erase 0x50000 0x60000;sf write 0x1000000 0x50000 0x60000;
-
-
-
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_UBOOT_T20111200_EMMC;sf probe 0;sf erase 0x50000 0x60000;sf write 0x1000000 0x50000 0x60000;
-
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_UBOOT_T20112700;
-
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_UBOOT_T20112800;
+mw.l 0x1000000 0x0 0x100000;tftpboot 0x1000000 STM_D5X_XRV4_UBOOT_T21011900;
 mmc write 0x1000000 0x600 0x600;
 ```
 
@@ -948,7 +1142,7 @@ mmc write 0x1000000 0x600 0x600;
 setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
 mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 logome.jpg;sf probe 0;sf erase 0xB0000 0x20000;sf write 0x1000000 0xB0000 0x20000;
 
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 logome.jpg;
+mw.l 0x1000000 0x0 0x100000;tftpboot 0x1000000 logome.jpg;
 mmc write 0x1000000 0xc00 0x100;
 ```
 
@@ -959,7 +1153,7 @@ mmc write 0x1000000 0xc00 0x100;
 ```
 mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 update.jpg;sf probe 0;sf erase 0xD0000 0x10000;sf write 0x1000000 0xD0000 0x7000;
 
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 update.jpg;
+mw.l 0x1000000 0x0 0x100000;tftpboot 0x1000000 update.jpg;
 mmc write 0x1000000 0xd00 0x100;
 ```
 
@@ -969,7 +1163,7 @@ mmc write 0x1000000 0xd00 0x100;
 
 ```
 #mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 vga.jpg;sf probe 0;sf erase 0xD7000 0x10000;sf write 0x1000000 0xD7000 0x19000;
-mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 vga.jpg;sf probe 0;sf write 0x1000000 0xD7000 0x19000;
+mw.l 0x1000000 0x0 0x100000;tftpboot 0x1000000 vga.jpg;sf probe 0;sf write 0x1000000 0xD7000 0x19000;
 ```
 
 
@@ -980,9 +1174,9 @@ mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 vga.jpg;sf probe 0;sf writ
 setenv ipaddr 192.168.11.9;setenv serverip 192.168.11.8;
 mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_KERNEL_T20110300;sf probe 0;sf erase 0xF0000 0x300000;sf write 0x1000000 0xF0000 ${filesize};
 
-mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_KERNEL_T20121600_I2C_RETRY128;
+mw.l 0x1000000 0x0 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_KERNEL_T21011500_BARRIER_PIO;
 
-mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_KERNEL_T20121200_I2C;
+mw.l 0x1000000 0x0 0x500000;tftpboot 0x1000000 STM_HD6N_600_KERNEL_T21011900;
 
 mmc write 0x1000000 0xE00 0x2000;
 ```
@@ -992,17 +1186,29 @@ mmc write 0x1000000 0xE00 0x2000;
 ### rootfs
 
 ```
-setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
-mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_ROOTFS_T20110900_004_NFS;sf probe 0;sf erase 0x3F0000 0x300000;sf write 0x1000000 0x3F0000 ${filesize};
+mw.l 0x1000000 0x0 0x500000;tftpboot 0x1000000 STM_HD6N_1200_ROOTFS_T21011900;
 
-mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_ROOTFS_T2011097;sf probe 0;sf erase 0x3F0000 0x300000;sf write 0x1000000 0x3F0000 ${filesize};
-
-mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_ROOTFS_T20120300_NFS;
-
-mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_ROOTFS_T20120500_NFS;
+mw.l 0x1000000 0x0 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_ROOTFS_T21011500_NFS;
 
 mmc write 0x1000000 0xA800 0x8000;
 ```
+
+
+
+### local
+
+```
+setenv ipaddr 192.168.50.113;setenv serverip 192.168.50.25
+
+tftpboot 0x1000000 STM_LOCAL_0x14_T21052999;
+mmc write 0x1000000 0x14800 0x22000;
+```
+
+### extend
+
+tftpboot 0x1000000 STM_EXTEND_0x15_T20122312;
+
+mmc write 0x1000000 0x54800 0x22000;
 
 
 
@@ -1010,19 +1216,20 @@ mmc write 0x1000000 0xA800 0x8000;
 
 ```
 setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
-mw.l 0x1000000 0xffffffff 0x2000000;tftpboot 0x1000000 STM_LOCAL_0x14_T20110995;sf probe 0;sf erase 0x6F0000 0x1650000;sf write 0x1000000 0x6F0000 ${filesize};
+mw.l 0x1000000 0x0 0x2000000;tftpboot 0x1000000 STM_LOCAL_0x14_T20110995;sf probe 0;sf erase 0x6F0000 0x1650000;sf write 0x1000000 0x6F0000 ${filesize};
 ```
 
 
 
 ### 清除参数区
 
-擦除参数区、状态区
-sf probe 0;sf erase 0x1d40000 0x40000;sf erase 0x1da0000 0x40000
+擦除参数区
+
+mw.l 0x1000000 0xffffffff 0x8000;mmc write 0x1000000 0x1E5800  0x8000;
 
 ### 清除状态区
 
-sf probe 0;sf erase 0x1d70000 0x10000;sf erase 0x1dd0000 0x10000
+mw.l 0x1000000 0x0 0x100000;mmc write 0x1000000  0x1ED800 0x800;
 
 导出参数区
 setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
@@ -1039,49 +1246,18 @@ setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
 mw.l 0x1000000 0xffffffff 0x200000;tftpboot 0x1000000 STM_D5X_XRV4_BACKUP_T20102400;sf probe 0;sf erase 0x1E00000 0x200000;sf write 0x1000000 0x1e00000 ${filesize};
 
 setenv ipaddr 192.168.55.111;setenv serverip 192.168.55.8;
-mw.l 0x1d600000 0xffffffff 0x500000;tftpboot 0x1d600000 uImage.bin;bootm 0x1d600000
+mw.l 0x1d600000 0x0 0x500000;tftpboot 0x1d600000 uImage.bin;bootm 0x1d600000
 
-mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_BACKUP_T20112800_EMMC;
+mw.l 0x1000000 0x0 0x500000;tftpboot 0x1000000 STM_9832X_BACKUP_T21011200;
 
-mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_BACKUP_T20112400_EMMC;
+mw.l 0x1000000 0x0 0x500000;tftpboot 0x1000000 STM_D5X_XRV4_BACKUP_T20112400_EMMC;
 
 mmc write 0x1000000 0x12800 0x2000;
-
-擦除备份系统
-sf probe 0;sf erase 0x1e00000 0x200000
 
 ### 不进备份系统
 
 encrypt init;encrypt cnt set 0;
-status set crc;reset;
-
-//导入生产测试包
-sf probe 0;tftpboot 0x1000000 Firmware_X5N_V320_T200820.03_C0010_TEST
-sf probe 0;sf erase 0 0x2000000;sf write 0x1000000 0 0x2000000;
-
-
-镜像拷贝
-dd if=/dev/mtdblock0 of=/var/run/mnt/nova_backup/loader bs=1M count=1
-dd if=/dev/mtdblock1 of=/var/run/mnt/nova_backup/fdt bs=1M count=1
-dd if=/dev/mtdblock2 of=/var/run/mnt/nova_backup/fdt_restore bs=1M count=1
-dd if=/dev/mtdblock3 of=/var/run/mnt/nova_backup/UBOOT bs=2M count=1
-dd if=/dev/mtdblock4 of=/var/run/mnt/nova_backup/env bs=2M count=1
-dd if=/dev/mtdblock5 of=/var/run/mnt/nova_backup/kernel bs=2M count=3
-dd if=/dev/mtdblock6 of=/var/run/mnt/nova_backup/rootfs bs=20M count=3
-dd if=/dev/mtdblock7 of=/var/run/mnt/nova_backup/rootfs1 bs=20M count=3
-dd if=/dev/mtdblock8 of=/var/run/mnt/nova_backup/app bs=20M count=3
-dd if=/dev/mtdblock9 of=/var/run/mnt/nova_backup/all bs=20M count=10
-
-dd if=/dev/mtd0 of=system_back/loader bs=1M count=1
-dd if=/dev/mtd1 of=system_back/fdt bs=1M count=1
-dd if=/dev/mtd2 of=system_back/fdt_restore bs=1M count=1
-dd if=/dev/mtd3 of=system_back/UBOOT bs=2M count=1
-dd if=/dev/mtd4 of=system_back/env bs=2M count=1
-dd if=/dev/mtd5 of=system_back/kernel bs=2M count=3
-dd if=/dev/mtd6 of=system_back/rootfs bs=20M count=3
-dd if=/dev/mtd7 of=system_back/rootfs1 bs=20M count=3
-dd if=/dev/mtd8 of=system_back/app bs=20M count=3
-dd if=/dev/mtdblock9 of=system_back/all bs=20M count=10
+status set crc;reset
 
 
 
@@ -1091,7 +1267,7 @@ c.  nand erase 0xC0000 0x200000;nand write 0x0 0xC0000 0x200000
 reset。
 再进入uboot ping其他IP OK.
 
-## nova 8G EMMC
+## 9、nova 8G EMMC
 
 主要涉及NT98528产品：D50_VA/951_VA/AIBOX5.0/C6D5.0/ADPRO2.0)tftp烧录方法
 
@@ -1138,8 +1314,12 @@ reset。
 
 ### rootfs
 
-​	mw.l 0x1000000 0xffffffff 0x500000;tftpboot 0x1000000 STM_AIBOX5.0_ROOTFS_T20111400;
-​	mmc write 0x1000000 0xA800 0x8000;
+```
+mw.l 0x1000000 0x0 0x500000;tftpboot 0x1000000 STM_AIBOX50_ROOTFS_T21010800_NFS;
+mw.l 0x1000000 0x0 0x500000;tftpboot 0x1000000 STM_AIBOX5.0_ROOTFS_T21011400;
+mmc write 0x1000000 0xA800 0x8000;
+```
+
 ​	
 
 ### AppLocal
@@ -1167,12 +1347,32 @@ reset。
 
 ​	mw.l 0x1000000 0xffffffff 0x100000;mmc write 0x1000000 0x1EE000 0x800
 
-MBR(注：拆包软件的MBR是所有MBR_N合并的，需要拆分后一个个单独烧录)
-	mw.l 0x1000000 0xffffffff 0x100000;tftpboot 0x1000000 MBR_N.bin;
-	mmc write 0x1000000 0x0 0x200;		//MBR_0.bin
-	mmc write 0x1000000 0x54800 0x200;	//MBR_1.bin
-	mmc write 0x1000000 0x1E5000 0x200;	//MBR_2.bin
-	mmc write 0x1000000 0x1ED800 0x200;	//MBR_3.bin
-	mmc write 0x1000000 0x1EE800 0x200;	//MBR_4.bin
-	mmc write 0x1000000 0x5EF000 0x200;	//MBR_5.bin
-	mmc write 0x1000000 0x65E000 0x200;	//MBR_6.bin
+## 10、SigmStar烧录
+
+setenv serverip 192.168.55.8;setenv ipaddr 192.168.55.224;
+setenv gatewayip 192.168.55.251; 网关
+setenv netmask 255.255.255.0;    掩码
+ping 192.168.51.34
+
+### uboot
+
+mw.l 0x22000000 0xFFFFFFFF 0x200000;tftp 0x22000000 u-boot.xz.img.bin;
+sf probe 0;sf erase 0x10000 0x1E000;sf write 0x22000000 0x10000 ${filesize};
+
+### kernel
+
+mw.l 0x22000000 0xFFFFFFFF 0x200000;tftp 0x22000000 kernel;
+sf probe 0;sf erase 0x40000 0x200000;sf write 0x22000000 0x40000 ${filesize};
+
+### rootfs
+
+mw.l 0x22000000 0xFFFFFFFF 0x200000;tftp 0x22000000 rootfs.sqfs;
+sf probe;sf erase 0x200000 0x460000;sf write 0x22000000 0x200000 ${filesize};
+
+### local
+
+mw.l 0x22000000 0xFFFFFFFF 0xB20000;tftp 0x22000000 local;
+sf probe;sf erase 0x200000 0xD20000;sf write 0x22000000 0x460000 ${filesize};
+
+
+
