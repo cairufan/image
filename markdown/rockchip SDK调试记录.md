@@ -1,53 +1,5 @@
 # rockchip SDK调试记录
 
-<!-- TOC -->
-
-- [rockchip SDK调试记录](#rockchip-sdk调试记录)
-  - [编译环境配置](#编译环境配置)
-    - [SDK版本](#sdk版本)
-    - [交叉工具链说明](#交叉工具链说明)
-  - [编译](#编译)
-    - [miniloader编译](#miniloader编译)
-    - [U-Boot编译](#u-boot编译)
-      - [U-Boot配置说明](#u-boot配置说明)
-    - [Kernel编译](#kernel编译)
-      - [Kernel配置说明](#kernel配置说明)
-    - [备份系统编译](#备份系统编译)
-    - [Rootfs编译](#rootfs编译)
-      - [Rootfs配置说明](#rootfs配置说明)
-    - [全自动编译](#全自动编译)
-    - [固件打包](#固件打包)
-    - [update.img拆包](#updateimg拆包)
-  - [U-Boot终端下tftp使用说明](#u-boot终端下tftp使用说明)
-    - [U-Boot配置以太网](#u-boot配置以太网)
-    - [U-Boot的tftp下载说明](#u-boot的tftp下载说明)
-    - [eMMC通过tftp烧录loader的方法](#emmc通过tftp烧录loader的方法)
-    - [tftp直接烧录到指定分区命令](#tftp直接烧录到指定分区命令)
-  - [Windows下USB uart调试及烧录](#windows下usb-uart调试及烧录)
-    - [安装USB驱动](#安装usb驱动)
-    - [关于瑞芯微开发工具的使用备注](#关于瑞芯微开发工具的使用备注)
-    - [Maskrom烧写模式](#maskrom烧写模式)
-    - [loader烧录模式](#loader烧录模式)
-    - [串口调试](#串口调试)
-  - [Stacktrace](#stacktrace)
-    - [使用方式](#使用方式)
-  - [uboot调试记录](#uboot调试记录)
-    - [dts](#dts)
-    - [启动流程](#启动流程)
-  - [kernel调试记录](#kernel调试记录)
-    - [内核配置修改记录](#内核配置修改记录)
-    - [dts](#dts-1)
-  - [rootfs调试记录](#rootfs调试记录)
-    - [CPU](#cpu)
-    - [DDR](#ddr)
-    - [USB](#usb)
-    - [PWM](#pwm)
-    - [查看分区信息](#查看分区信息)
-    - [分区写保护设置](#分区写保护设置)
-  - [问题记录](#问题记录)
-
-<!-- /TOC -->
-
 ## 编译环境配置
 
 ```text
@@ -562,6 +514,10 @@ start.s
 
 - 现有dts文件为kernel/arch/arm/boot/dts/rv1126-evb-ddr3-v13.dts 里面有对应链接的dtsi文件
 
+### 打印
+
+- printk(KERN_ERR "cairufan [%s][%d]\r\n", __func__, __LINE__);
+
 ## rootfs调试记录
 
 ### CPU
@@ -628,6 +584,31 @@ Linux Kernel下EMMC和SD CARD是块设备，NAND FLASH使用rknand 或者rkflash
 
 ```
 
+### 媒体算法内存查看
+
+```txt
+
+free本身的统计方式有问题 无法查看准确的cma大小
+
+会把CMA这部分的大小看成是cmd+isp_reserved的总大小 实际上isp用的是iommu的而已
+
+sys/kernel/debug/cma/目录下会有两种类别的CMA 一种是ISP 另一只是LINUX
+
+cat /sys/kernel/debug/cma/cma-linux,cma/count 可以看出实际有多少页 单位4K
+
+cat /sys/kernel/debug/cma/cma-linux,cma/used 可以看出申请使用了多少页 单位4K
+
+```
+
+### 媒体算法内存修改 CMA分配
+
+```txt
+
+cmd由两块组成 一个是ISP 一个是LINUX 都在kernel的DTS可直接修改大小
+关键字isp_reserved linux,cma 直接修改size属性即可
+
+```
+
 ## 问题记录
 
 ```text
@@ -657,5 +638,51 @@ debug口的串口修改主要分为3个阶段 ddr，uboot，kernel
 ddr： 修改rkbin\tools\ddrbin_param.txt文件中的uart baudrate这一项为115200，其他不动，然后用指令./ddrbin_tool ddrbin_param.txt ../bin/rv11/rv1126_ddr_924MHz_v1.08.bin即可；具体方法在rkbin\tools\ddrbin_tool_user_guide.txt中有介绍
 uboot: 修改下config配置即可
 kernel: 修改下dts配置即可
+
+5. AD视频调试记录
+
+配置好DTS和硬件环境后，敲以下指令获取YUV图像
+v4l2-ctl --verbose -d /dev/video0 --set-fmt-video=width=1920,height=1080,pixelformat=NV16 --stream-mmap=8 --stream-count=50 --stream-to=/var/run/tool/board/d3/cap.yuv --stream-poll
+其中/dev/video0为AHD通道，格式必须为NV16 --stream-count为录制帧数 --stream-to为保存目录
+PC端使用YUVplayer.exe工具打开yuv文件，选择NV16的格式及对应的分辨率
+
+输入 media-ctl -p 查看各个外设驱动到底用了哪个/dev/v4l-subdevX 下面的例子就是6188使用了v4l-subdev6的设备节点
+使用设备节点可以和外设的私有ioctl进行通信
+- entity 31: m00_b_nvp6188 1-0030 (1 pad, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev6
+        pad0: Source
+                [fmt:UYVY8_2X8/1920x1080 field:none]
+                -> "rockchip-mipi-dphy-rx":0 [ENABLED]
+
+6. AD音频调试记录
+
+读取AD芯片当前音频寄存器指令 ./i2c_write 1 0x60 0xff 0x01;./i2c_read 1 0x60 0x07 0x13
+
+7. 809 codec音频调试
+
+配置好DTS和硬件环境后，若想测试播放功能 先确认IO口打开PA使能，如下
+echo 57 > /sys/class/gpio/export
+echo 1 > /sys/class/gpio/gpio57/value
+播放指令如下
+aplay out.wav
+录音指令如下：
+arecord -c 1 -d 10 -t raw -r 8000 -f S16_LE test.raw 
+录音后的raw文件可以使用PC端的audacity工具导入原始数据播放出来
+
+8. RK1000 codec调试记录
+
+首先硬件是809的一个1.8V的PIN口（LDO5）接到了RK1000上，默认是OFF的 要在内核中把这个打开，库上代码已经打开
+其次在系统启动后输入 dmesg | grep drm 和 dmesg | grep rk1000 确认rk1000和drm链路是否正常
+也可以使用 i2c_read 0 0x40 0xb3 0xb3 来读取一下809 LDO5的状态 如果是0x09就是打开的
+再使用 i2c_read 5 0x84 0x00 0x10 来获取RK1000的i2c是否能正常读到数据 证明RK1000是正常工作的
+最后使用 modetest -D rockchip -s 56@53:720x576 -v 点亮屏幕输出
+
+9. NVP6021 codec调试记录
+
+系统启动后输入 dmesg | grep drm 确认drm链路是否正常
+因为NVP6021并未集成到RK的内核中，所以需要找厂商拿到寄存器序列
+上电后先执行 modetest -D rockchip -s 56@53:1280x720 -v 时VO有输出 且有CLK输出
+再执行脚本初始化6021的寄存器序列 点亮屏幕
 
 ```
