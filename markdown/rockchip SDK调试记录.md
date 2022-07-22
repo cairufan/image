@@ -514,8 +514,13 @@ start.s
 
 - 现有dts文件为kernel/arch/arm/boot/dts/rv1126-evb-ddr3-v13.dts 里面有对应链接的dtsi文件
 
+- dts下的clk定义在include/dt-bindings/clock/rv1126-cru.h中能找到
+
+- 查看io电源域 dmesg |grep io-domains|grep supplied
+
 ### 打印
 
+- printk(KERN_ERR "cairufan [%s][%s][%d]\r\n", __FILE__, __func__, __LINE__);
 - printk(KERN_ERR "cairufan [%s][%d]\r\n", __func__, __LINE__);
 
 ## rootfs调试记录
@@ -590,13 +595,13 @@ Linux Kernel下EMMC和SD CARD是块设备，NAND FLASH使用rknand 或者rkflash
 
 free本身的统计方式有问题 无法查看准确的cma大小
 
-会把CMA这部分的大小看成是cmd+isp_reserved的总大小 实际上isp用的是iommu的而已
+会把CMA这部分的大小看成是cma+isp_reserved的总大小 实际上isp用的是iommu的而已
 
 sys/kernel/debug/cma/目录下会有两种类别的CMA 一种是ISP 另一只是LINUX
 
-cat /sys/kernel/debug/cma/cma-linux,cma/count 可以看出实际有多少页 单位4K
+cat /sys/kernel/debug/cma/cma-isp/count 可以看出实际有多少页 单位4K
 
-cat /sys/kernel/debug/cma/cma-linux,cma/used 可以看出申请使用了多少页 单位4K
+cat /sys/kernel/debug/cma/cma-isp/used 可以看出申请使用了多少页 单位4K
 
 ```
 
@@ -606,6 +611,47 @@ cat /sys/kernel/debug/cma/cma-linux,cma/used 可以看出申请使用了多少�
 
 cmd由两块组成 一个是ISP 一个是LINUX 都在kernel的DTS可直接修改大小
 关键字isp_reserved linux,cma 直接修改size属性即可
+
+```
+
+### CPU定频
+
+```txt
+
+/* 查看当前的CPU频率支持列表 */
+cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies
+
+/* 切换governor到userspace */
+echo userspace > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+
+/* 设置1512MHz */
+echo 1512000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
+
+/* 查看当前的CPU频率 */
+cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq
+cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq
+
+```
+
+### 查看当前设备内的设备树信息
+
+```txt
+
+/sys/firmware/devicetree/base 目录下能看到设备树相关信息
+
+```
+
+### perf抓取生成txt文件分析
+
+```txt
+
+板内运行
+
+1. 生成离线记录文件 按ctlr+c结束
+perf record -g -o ./record.data
+
+2. 解析并重定向到txt文件内
+perf report -f -i ./record.data > ./report.txt
 
 ```
 
@@ -639,7 +685,7 @@ ddr： 修改rkbin\tools\ddrbin_param.txt文件中的uart baudrate这一项为11
 uboot: 修改下config配置即可
 kernel: 修改下dts配置即可
 
-5. AD视频调试记录
+5. nvp6188视频调试记录
 
 配置好DTS和硬件环境后，敲以下指令获取YUV图像
 v4l2-ctl --verbose -d /dev/video0 --set-fmt-video=width=1920,height=1080,pixelformat=NV16 --stream-mmap=8 --stream-count=50 --stream-to=/var/run/tool/board/d3/cap.yuv --stream-poll
@@ -655,9 +701,15 @@ PC端使用YUVplayer.exe工具打开yuv文件，选择NV16的格式及对应的�
                 [fmt:UYVY8_2X8/1920x1080 field:none]
                 -> "rockchip-mipi-dphy-rx":0 [ENABLED]
 
-6. AD音频调试记录
+6. nvp6188音频调试记录
 
-读取AD芯片当前音频寄存器指令 ./i2c_write 1 0x60 0xff 0x01;./i2c_read 1 0x60 0x07 0x13
+读取6188芯片ID寄存器指令: i2c_write 1 0x60 0xff 0x00;i2c_read 1 0x60 0xF4 0xF4
+读取6188芯片 bank dump指令：i2c_write 1 0x60 0xff 0x00;i2cdump -f -y 1 0x30 b
+
+然后用arecord -l指令确认声卡是否有开启 抓取指令如下 rockchipnvp6188为声卡名称
+arecord -D default:CARD=rockchipnvp6188 -c 4 -d 10 -t raw -r 8000 -f S16_LE test.raw
+
+特别注意 在6188音频调试过程中 需要把pinctrl-0(mclk)去掉，这样才能正常生成声卡; 因为6188是接了27M外部晶振; 
 
 7. 809 codec音频调试
 
@@ -669,6 +721,8 @@ aplay out.wav
 录音指令如下：
 arecord -c 1 -d 10 -t raw -r 8000 -f S16_LE test.raw 
 录音后的raw文件可以使用PC端的audacity工具导入原始数据播放出来
+调试RK809音量大小指令如下
+i2c_write 0 0x40 0x31 0x03;i2c_write 0 0x40 0x32 0x03
 
 8. RK1000 codec调试记录
 
@@ -684,5 +738,23 @@ arecord -c 1 -d 10 -t raw -r 8000 -f S16_LE test.raw
 因为NVP6021并未集成到RK的内核中，所以需要找厂商拿到寄存器序列
 上电后先执行 modetest -D rockchip -s 56@53:1280x720 -v 时VO有输出 且有CLK输出
 再执行脚本初始化6021的寄存器序列 点亮屏幕
+
+10. N5 调试记录
+
+读取N5芯片ID寄存器指令: i2c_write 1 0x66 0xff 0x00;i2c_read 1 0x66 0xF4 0xF4
+读取6188芯片 bank dump指令：i2c_write 1 0x66 0xff 0x00;i2cdump -f -y 1 0x33 b
+N5是级联到6188的MIPI2上，若想让MIPI2不输出N5的数据，从6188内部自己产生的话 执行以下指令
+i2c_write 1 0x60 0xff 0x31;i2c_write 1 0x60 0xa4 0x00;i2c_write 1 0x60 0xa5 0x00;
+
+isp链路抓取v4l2视频流步骤：
+1. 设置isp链路通道
+media-ctl -d /dev/media1 -l '"rkisp-isp-subdev":2->"rkisp-bridge-ispp":0[0]';media-ctl -d /dev/media1 -l '"rkisp-isp-subdev":2->"rkisp_mainpath":0[1]'
+
+2. 初始化6188寄存器序列(若有级联)
+cat /sys/devices/platform/ff510000.i2c/i2c-1/1-0030/nvp6188_debug
+
+3. 抓取v4l2视频
+v4l2-ctl --verbose -d /dev/video5 --set-fmt-video=width=1920,height=1080,pixelformat=UYVY --stream-mmap=8 --stream-count=50 --stream-to=/var/run/tool/board/d3/cap0.yuv --stream-poll
+
 
 ```
